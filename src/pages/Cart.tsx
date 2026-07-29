@@ -109,7 +109,7 @@ const Cart = () => {
                       </div>
 
                       {/* Actions */}
-                      <div className="flex items-center justify-between mt-4">
+                      <div className="flex items-center justify-between gap-3 mt-4 flex-wrap">
                         <QuantitySelector
                           quantity={item.quantity}
                           onQuantityChange={(qty) =>
@@ -118,6 +118,7 @@ const Cart = () => {
                         />
                         <button
                           onClick={() => removeItem(item.product.id)}
+                          aria-label="Remove item"
                           className="p-2 text-muted-foreground hover:text-destructive transition-colors"
                         >
                           <Trash2 className="w-5 h-5" />
