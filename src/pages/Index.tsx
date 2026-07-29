@@ -157,7 +157,7 @@ const Index = () => {
       {/* Latest Products */}
       <section className="py-20 md:py-28 bg-linen">
         <div className="container-full">
-          <div className="flex items-end justify-between mb-14">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 md:mb-14">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -167,7 +167,7 @@ const Index = () => {
               <p className="text-[11px] font-semibold tracking-[0.3em] uppercase text-primary mb-3">
                 Just Arrived
               </p>
-              <h2 className="font-serif text-4xl md:text-5xl text-foreground">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground">
                 Latest Products
               </h2>
             </motion.div>
