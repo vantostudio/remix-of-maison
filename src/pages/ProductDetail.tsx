@@ -173,13 +173,13 @@ const ProductDetail = () => {
 
               {/* Thumbnail strip */}
               {product.images.length > 1 && (
-                <div className="flex gap-3">
+                <div className="flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide">
                   {product.images.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
                       className={cn(
-                        "w-24 h-24 overflow-hidden transition-all duration-300",
+                        "w-16 h-16 sm:w-24 sm:h-24 flex-shrink-0 overflow-hidden transition-all duration-300",
                         index === currentImageIndex
                           ? "ring-2 ring-foreground ring-offset-2 ring-offset-background"
                           : "opacity-60 hover:opacity-100"
