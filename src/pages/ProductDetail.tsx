@@ -324,7 +324,7 @@ const ProductDetail = () => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 md:gap-10">
               {relatedProducts.map((product, index) => (
                 <ProductCard
                   key={product.id}
