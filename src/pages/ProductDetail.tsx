@@ -212,7 +212,7 @@ const ProductDetail = () => {
                 </Link>
               )}
 
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-5 leading-[1.05]">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground mb-4 sm:mb-5 leading-[1.05]">
                 {product.name}
               </h1>
 
