@@ -62,12 +62,12 @@ const Cart = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-serif text-4xl md:text-5xl mb-12"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl mb-8 md:mb-12"
           >
             Your Bag
           </motion.h1>
 
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-12 gap-10 md:gap-12 lg:gap-16">
             {/* Cart Items */}
             <div className="lg:col-span-7">
               <div className="space-y-0">
