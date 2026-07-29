@@ -100,8 +100,8 @@ const Checkout = () => {
       {/* Coming Soon Banner */}
       <div className="bg-primary/5 border-b border-primary/10">
         <div className="container-full py-4">
-          <div className="flex items-center gap-3 text-sm">
-            <AlertCircle className="w-5 h-5 text-primary" />
+          <div className="flex items-start gap-3 text-sm">
+            <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
             <p>
               <span className="font-medium">Online checkout coming soon.</span>{" "}
               <span className="text-muted-foreground">
