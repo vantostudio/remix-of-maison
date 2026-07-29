@@ -108,7 +108,7 @@ const ProductDetail = () => {
       {/* Product Content */}
       <section className="py-10 md:py-16">
         <div className="container-full">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+          <div className="grid lg:grid-cols-12 gap-8 md:gap-12 lg:gap-20">
             {/* Image Gallery — Takes 7 columns */}
             <div className="lg:col-span-7 space-y-4">
               {/* Main Image */}
