@@ -46,7 +46,7 @@ export const Footer = () => {
 
       {/* Main footer content */}
       <div className="container-full py-12 md:py-16">
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 sm:gap-10 md:grid-cols-4">
           {/* Collections */}
           <div>
             <h4 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-background/40 mb-5">
