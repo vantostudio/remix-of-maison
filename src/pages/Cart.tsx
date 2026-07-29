@@ -77,12 +77,12 @@ const Cart = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex gap-6 py-8 border-b border-border"
+                    className="flex gap-4 sm:gap-6 py-6 sm:py-8 border-b border-border"
                   >
                     {/* Product Image */}
                     <Link
                       to={`/product/${item.product.slug}`}
-                      className="w-28 h-32 md:w-36 md:h-44 flex-shrink-0 overflow-hidden bg-muted/30 group"
+                      className="w-24 h-28 sm:w-28 sm:h-32 md:w-36 md:h-44 flex-shrink-0 overflow-hidden bg-muted/30 group"
                     >
                       <img
                         src={item.product.images[0]}
