@@ -319,8 +319,8 @@ const Checkout = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-5"
             >
-              <div className="bg-linen p-8 lg:sticky lg:top-28">
-                <h2 className="font-serif text-2xl mb-6">Order Summary</h2>
+              <div className="bg-linen p-6 sm:p-8 lg:sticky lg:top-28">
+                <h2 className="font-serif text-xl sm:text-2xl mb-6">Order Summary</h2>
 
                 {/* Items */}
                 <div className="space-y-4 mb-6">
