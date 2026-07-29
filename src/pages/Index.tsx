@@ -62,7 +62,7 @@ const Index = () => {
             >
               Curated for Considered Living
             </motion.p>
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-white mb-8 leading-[0.9] tracking-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-white mb-6 sm:mb-8 leading-[0.9] tracking-tight">
               Objects of
               <br />
               <span className="italic font-normal">Quiet Beauty</span>
@@ -157,7 +157,7 @@ const Index = () => {
       {/* Latest Products */}
       <section className="py-20 md:py-28 bg-linen">
         <div className="container-full">
-          <div className="flex items-end justify-between mb-14">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 md:mb-14">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -167,7 +167,7 @@ const Index = () => {
               <p className="text-[11px] font-semibold tracking-[0.3em] uppercase text-primary mb-3">
                 Just Arrived
               </p>
-              <h2 className="font-serif text-4xl md:text-5xl text-foreground">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground">
                 Latest Products
               </h2>
             </motion.div>
@@ -180,7 +180,7 @@ const Index = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 md:gap-10">
             {latestProducts.map((product, index) => (
               <ProductCard key={product.id} product={product} index={index} />
             ))}

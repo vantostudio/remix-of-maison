@@ -187,9 +187,9 @@ export const Header = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const }}
-              className="md:hidden border-t border-border overflow-hidden"
+              className="md:hidden border-t border-border overflow-hidden max-h-[calc(100svh-4rem)] overflow-y-auto"
             >
-              <div className="py-8 space-y-6">
+              <div className="py-6 space-y-5">
                 <div className="space-y-1">
                   <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-muted-foreground/50 px-2 mb-3">
                     Collections

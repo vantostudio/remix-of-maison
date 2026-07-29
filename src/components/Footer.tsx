@@ -46,7 +46,7 @@ export const Footer = () => {
 
       {/* Main footer content */}
       <div className="container-full py-12 md:py-16">
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 sm:gap-10 md:grid-cols-4">
           {/* Collections */}
           <div>
             <h4 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-background/40 mb-5">
@@ -159,10 +159,10 @@ export const Footer = () => {
       {/* Bottom bar */}
       <div className="border-t border-background/10">
         <div className="container-full py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-background/30">
+          <p className="text-xs text-background/30 text-center">
             © {new Date().getFullYear()} Maison. All rights reserved.
           </p>
-          <div className="flex gap-8">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
             <a
               href="#"
               className="text-xs text-background/30 hover:text-background/60 transition-colors duration-300"

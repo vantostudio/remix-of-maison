@@ -108,7 +108,7 @@ const ProductDetail = () => {
       {/* Product Content */}
       <section className="py-10 md:py-16">
         <div className="container-full">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+          <div className="grid lg:grid-cols-12 gap-8 md:gap-12 lg:gap-20">
             {/* Image Gallery — Takes 7 columns */}
             <div className="lg:col-span-7 space-y-4">
               {/* Main Image */}
@@ -130,13 +130,15 @@ const ProductDetail = () => {
                   <>
                     <button
                       onClick={prevImage}
-                      className="absolute left-5 top-1/2 -translate-y-1/2 p-3 bg-background/90 backdrop-blur-md hover:bg-background transition-all duration-300 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0"
+                      aria-label="Previous image"
+                      className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 bg-background/90 backdrop-blur-md hover:bg-background transition-all duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:-translate-x-2 sm:group-hover:translate-x-0"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
                       onClick={nextImage}
-                      className="absolute right-5 top-1/2 -translate-y-1/2 p-3 bg-background/90 backdrop-blur-md hover:bg-background transition-all duration-300 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0"
+                      aria-label="Next image"
+                      className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 bg-background/90 backdrop-blur-md hover:bg-background transition-all duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-2 sm:group-hover:translate-x-0"
                     >
                       <ChevronRight className="w-5 h-5" />
                     </button>
@@ -171,13 +173,13 @@ const ProductDetail = () => {
 
               {/* Thumbnail strip */}
               {product.images.length > 1 && (
-                <div className="flex gap-3">
+                <div className="flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide">
                   {product.images.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
                       className={cn(
-                        "w-24 h-24 overflow-hidden transition-all duration-300",
+                        "w-16 h-16 sm:w-24 sm:h-24 flex-shrink-0 overflow-hidden transition-all duration-300",
                         index === currentImageIndex
                           ? "ring-2 ring-foreground ring-offset-2 ring-offset-background"
                           : "opacity-60 hover:opacity-100"
@@ -210,7 +212,7 @@ const ProductDetail = () => {
                 </Link>
               )}
 
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-5 leading-[1.05]">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground mb-4 sm:mb-5 leading-[1.05]">
                 {product.name}
               </h1>
 
@@ -324,7 +326,7 @@ const ProductDetail = () => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 md:gap-10">
               {relatedProducts.map((product, index) => (
                 <ProductCard
                   key={product.id}

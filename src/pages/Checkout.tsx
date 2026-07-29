@@ -100,8 +100,8 @@ const Checkout = () => {
       {/* Coming Soon Banner */}
       <div className="bg-primary/5 border-b border-primary/10">
         <div className="container-full py-4">
-          <div className="flex items-center gap-3 text-sm">
-            <AlertCircle className="w-5 h-5 text-primary" />
+          <div className="flex items-start gap-3 text-sm">
+            <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
             <p>
               <span className="font-medium">Online checkout coming soon.</span>{" "}
               <span className="text-muted-foreground">
@@ -119,12 +119,12 @@ const Checkout = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-serif text-4xl md:text-5xl mb-12"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl mb-8 md:mb-12"
           >
             Checkout
           </motion.h1>
 
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-12 gap-10 md:gap-12 lg:gap-16">
             {/* Form */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -319,8 +319,8 @@ const Checkout = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-5"
             >
-              <div className="bg-linen p-8 lg:sticky lg:top-28">
-                <h2 className="font-serif text-2xl mb-6">Order Summary</h2>
+              <div className="bg-linen p-6 sm:p-8 lg:sticky lg:top-28">
+                <h2 className="font-serif text-xl sm:text-2xl mb-6">Order Summary</h2>
 
                 {/* Items */}
                 <div className="space-y-4 mb-6">

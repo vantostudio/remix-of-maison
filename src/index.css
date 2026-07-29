@@ -159,15 +159,15 @@
 
 @layer components {
   .container-narrow {
-    @apply max-w-5xl mx-auto px-6;
+    @apply max-w-5xl mx-auto px-4 sm:px-6;
   }
 
   .container-wide {
-    @apply max-w-7xl mx-auto px-6;
+    @apply max-w-7xl mx-auto px-4 sm:px-6;
   }
 
   .container-full {
-    @apply max-w-[1600px] mx-auto px-6 lg:px-12;
+    @apply max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12;
   }
 
   /* Editorial grid for products */
@@ -200,6 +200,15 @@
   .bg-linen {
     background-color: hsl(var(--linen));
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23d4c4b5' fill-opacity='0.15' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+  }
+
+  /* Hide scrollbars while keeping scroll behaviour */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 
   /* Subtle hover scale */

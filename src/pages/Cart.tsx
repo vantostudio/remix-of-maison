@@ -62,12 +62,12 @@ const Cart = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-serif text-4xl md:text-5xl mb-12"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl mb-8 md:mb-12"
           >
             Your Bag
           </motion.h1>
 
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-12 gap-10 md:gap-12 lg:gap-16">
             {/* Cart Items */}
             <div className="lg:col-span-7">
               <div className="space-y-0">
@@ -77,12 +77,12 @@ const Cart = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex gap-6 py-8 border-b border-border"
+                    className="flex gap-4 sm:gap-6 py-6 sm:py-8 border-b border-border"
                   >
                     {/* Product Image */}
                     <Link
                       to={`/product/${item.product.slug}`}
-                      className="w-28 h-32 md:w-36 md:h-44 flex-shrink-0 overflow-hidden bg-muted/30 group"
+                      className="w-24 h-28 sm:w-28 sm:h-32 md:w-36 md:h-44 flex-shrink-0 overflow-hidden bg-muted/30 group"
                     >
                       <img
                         src={item.product.images[0]}
@@ -109,7 +109,7 @@ const Cart = () => {
                       </div>
 
                       {/* Actions */}
-                      <div className="flex items-center justify-between mt-4">
+                      <div className="flex items-center justify-between gap-3 mt-4 flex-wrap">
                         <QuantitySelector
                           quantity={item.quantity}
                           onQuantityChange={(qty) =>
@@ -118,6 +118,7 @@ const Cart = () => {
                         />
                         <button
                           onClick={() => removeItem(item.product.id)}
+                          aria-label="Remove item"
                           className="p-2 text-muted-foreground hover:text-destructive transition-colors"
                         >
                           <Trash2 className="w-5 h-5" />
@@ -144,8 +145,8 @@ const Cart = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-5"
             >
-              <div className="bg-linen p-8 lg:sticky lg:top-28">
-                <h2 className="font-serif text-2xl mb-8">Order Summary</h2>
+              <div className="bg-linen p-6 sm:p-8 lg:sticky lg:top-28">
+                <h2 className="font-serif text-xl sm:text-2xl mb-6 sm:mb-8">Order Summary</h2>
 
                 <div className="space-y-4 mb-8">
                   <div className="flex justify-between text-sm">

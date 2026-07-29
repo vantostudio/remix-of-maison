@@ -39,7 +39,7 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
         {/* Image Container */}
         <div
           className={cn(
-            "relative overflow-hidden bg-muted/50 mb-5",
+            "relative overflow-hidden bg-muted/50 mb-3 sm:mb-5",
             variant === "large" ? "aspect-[3/4]" : "aspect-[4/5]"
           )}
         >
@@ -71,28 +71,28 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
           <button
             onClick={handleWishlistToggle}
             className={cn(
-              "absolute top-5 right-5 p-2.5 rounded-full transition-all duration-500",
+              "absolute top-2 right-2 sm:top-5 sm:right-5 p-2 sm:p-2.5 rounded-full transition-all duration-500",
               "bg-background/90 backdrop-blur-md hover:bg-background shadow-sm",
-              "opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0",
+              "sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0",
               inWishlist && "opacity-100 translate-y-0"
             )}
           >
             <Heart
               className={cn(
-                "w-4 h-4 transition-all duration-300",
+                "w-3.5 h-3.5 sm:w-4 sm:h-4 transition-all duration-300",
                 inWishlist ? "fill-primary text-primary scale-110" : "text-foreground"
               )}
             />
           </button>
 
           {/* Badges */}
-          <div className="absolute top-5 left-5 flex flex-col gap-2">
+          <div className="absolute top-2 left-2 sm:top-5 sm:left-5 flex flex-col gap-1.5 sm:gap-2">
             {product.new && (
               <motion.span
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                className="px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] uppercase bg-foreground text-background"
+                className="px-2 py-1 sm:px-3 sm:py-1.5 text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase bg-foreground text-background"
               >
                 New
               </motion.span>
@@ -102,7 +102,7 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
-                className="px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] uppercase bg-primary text-primary-foreground"
+                className="px-2 py-1 sm:px-3 sm:py-1.5 text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase bg-primary text-primary-foreground"
               >
                 Featured
               </motion.span>
@@ -110,7 +110,7 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
           </div>
 
           {/* Quick View Indicator */}
-          <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center pb-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
+          <div className="hidden sm:flex absolute bottom-0 left-0 right-0 items-center justify-center pb-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
             <span className="px-6 py-2.5 text-xs font-medium tracking-[0.15em] uppercase bg-background/95 backdrop-blur-md text-foreground shadow-lg">
               View Details
             </span>
@@ -118,30 +118,30 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
         </div>
 
         {/* Product Info */}
-        <div className="space-y-2">
+        <div className="space-y-1 sm:space-y-2">
           {/* Collection label */}
           {collection && (
-            <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-muted-foreground/70 transition-colors duration-300 group-hover:text-primary">
+            <p className="text-[10px] sm:text-[11px] font-medium tracking-[0.2em] uppercase text-muted-foreground/70 transition-colors duration-300 group-hover:text-primary">
               {collection.name}
             </p>
           )}
 
-          <h3 className="font-serif text-xl text-foreground transition-colors duration-300 group-hover:text-primary leading-snug">
+          <h3 className="font-serif text-base sm:text-xl text-foreground transition-colors duration-300 group-hover:text-primary leading-snug">
             {product.name}
           </h3>
 
-          <p className="text-sm text-muted-foreground line-clamp-1 leading-relaxed">
+          <p className="hidden sm:block text-sm text-muted-foreground line-clamp-1 leading-relaxed">
             {product.description}
           </p>
 
-          <div className="flex items-center gap-3 pt-1">
-            <p className="text-base font-medium text-foreground tracking-wide">
+          <div className="flex items-center gap-2 sm:gap-3 pt-1 flex-wrap">
+            <p className="text-sm sm:text-base font-medium text-foreground tracking-wide">
               ${product.price.toLocaleString()}
             </p>
             {product.materials && (
               <>
-                <span className="w-px h-3 bg-border" />
-                <p className="text-xs text-muted-foreground/60 tracking-wide">
+                <span className="hidden sm:inline w-px h-3 bg-border" />
+                <p className="hidden sm:block text-xs text-muted-foreground/60 tracking-wide">
                   {product.materials.split(",")[0]}
                 </p>
               </>
