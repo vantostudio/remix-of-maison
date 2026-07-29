@@ -119,12 +119,12 @@ const Checkout = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-serif text-4xl md:text-5xl mb-12"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl mb-8 md:mb-12"
           >
             Checkout
           </motion.h1>
 
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-12 gap-10 md:gap-12 lg:gap-16">
             {/* Form */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
