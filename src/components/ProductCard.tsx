@@ -118,30 +118,30 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
         </div>
 
         {/* Product Info */}
-        <div className="space-y-2">
+        <div className="space-y-1 sm:space-y-2">
           {/* Collection label */}
           {collection && (
-            <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-muted-foreground/70 transition-colors duration-300 group-hover:text-primary">
+            <p className="text-[10px] sm:text-[11px] font-medium tracking-[0.2em] uppercase text-muted-foreground/70 transition-colors duration-300 group-hover:text-primary">
               {collection.name}
             </p>
           )}
 
-          <h3 className="font-serif text-xl text-foreground transition-colors duration-300 group-hover:text-primary leading-snug">
+          <h3 className="font-serif text-base sm:text-xl text-foreground transition-colors duration-300 group-hover:text-primary leading-snug">
             {product.name}
           </h3>
 
-          <p className="text-sm text-muted-foreground line-clamp-1 leading-relaxed">
+          <p className="hidden sm:block text-sm text-muted-foreground line-clamp-1 leading-relaxed">
             {product.description}
           </p>
 
-          <div className="flex items-center gap-3 pt-1">
-            <p className="text-base font-medium text-foreground tracking-wide">
+          <div className="flex items-center gap-2 sm:gap-3 pt-1 flex-wrap">
+            <p className="text-sm sm:text-base font-medium text-foreground tracking-wide">
               ${product.price.toLocaleString()}
             </p>
             {product.materials && (
               <>
-                <span className="w-px h-3 bg-border" />
-                <p className="text-xs text-muted-foreground/60 tracking-wide">
+                <span className="hidden sm:inline w-px h-3 bg-border" />
+                <p className="hidden sm:block text-xs text-muted-foreground/60 tracking-wide">
                   {product.materials.split(",")[0]}
                 </p>
               </>
