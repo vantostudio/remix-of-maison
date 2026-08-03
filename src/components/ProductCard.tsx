@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Heart } from "lucide-react";
+import { Heart, Eye } from "lucide-react";
 import { motion } from "framer-motion";
 import { Product, collections } from "@/data/products";
 import { useWishlist } from "@/hooks/useWishlist";
+import { QuickViewDialog } from "@/components/QuickViewDialog";
 import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
@@ -16,6 +18,7 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
   const inWishlist = isInWishlist(product.id);
   const collection = collections.find((c) => c.id === product.collection);
   const hasSecondImage = product.images.length > 1;
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
 
   const handleWishlistToggle = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -26,6 +29,13 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
       addItem(product);
     }
   };
+
+  const handleQuickView = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setQuickViewOpen(true);
+  };
+
 
   return (
     <motion.article
