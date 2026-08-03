@@ -1,11 +1,18 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, SlidersHorizontal, X, Check } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { ProductCard } from "@/components/ProductCard";
 import { products, collections, getCollectionBySlug } from "@/data/products";
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import {
   Select,
   SelectContent,
@@ -15,10 +22,9 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
-type SortOption = "featured" | "newest" | "price-asc" | "price-desc" | "name-asc";
+type SortOption = "newest" | "price-asc" | "price-desc" | "name-asc";
 
 const sortOptions: { value: SortOption; label: string }[] = [
-  { value: "featured", label: "Featured" },
   { value: "newest", label: "Newest" },
   { value: "price-asc", label: "Price: Low to High" },
   { value: "price-desc", label: "Price: High to Low" },
@@ -27,8 +33,10 @@ const sortOptions: { value: SortOption; label: string }[] = [
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const activeCollection = searchParams.get("collection") || "all";
-  const activeSort = (searchParams.get("sort") as SortOption) || "featured";
+  const activeSort = (searchParams.get("sort") as SortOption) || "newest";
+
 
   const filteredAndSortedProducts = useMemo(() => {
     let result = [...products];
