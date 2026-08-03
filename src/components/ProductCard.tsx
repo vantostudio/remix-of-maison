@@ -172,6 +172,12 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
           </div>
         </div>
       </Link>
+
+      <QuickViewDialog
+        product={product}
+        open={quickViewOpen}
+        onOpenChange={setQuickViewOpen}
+      />
     </motion.article>
-  );
+
 };
