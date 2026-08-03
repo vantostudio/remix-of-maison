@@ -51,9 +51,6 @@ const Products = () => {
 
     // Sort
     switch (activeSort) {
-      case "newest":
-        result = result.filter((p) => p.new).concat(result.filter((p) => !p.new));
-        break;
       case "price-asc":
         result.sort((a, b) => a.price - b.price);
         break;
@@ -63,9 +60,9 @@ const Products = () => {
       case "name-asc":
         result.sort((a, b) => a.name.localeCompare(b.name));
         break;
-      case "featured":
+      case "newest":
       default:
-        result = result.filter((p) => p.featured).concat(result.filter((p) => !p.featured));
+        result = result.filter((p) => p.new).concat(result.filter((p) => !p.new));
         break;
     }
 
@@ -88,13 +85,18 @@ const Products = () => {
 
   const handleSortChange = (value: string) => {
     const newParams = new URLSearchParams(searchParams);
-    if (value === "featured") {
+    if (value === "newest") {
       newParams.delete("sort");
     } else {
       newParams.set("sort", value);
     }
     setSearchParams(newParams);
   };
+
+  const activeSortLabel =
+    sortOptions.find((o) => o.value === activeSort)?.label ?? "Newest";
+  const hasActiveFilters = activeCollection !== "all" || activeSort !== "newest";
+
 
   return (
     <Layout>
