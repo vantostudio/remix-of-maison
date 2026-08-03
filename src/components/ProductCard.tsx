@@ -179,5 +179,6 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
         onOpenChange={setQuickViewOpen}
       />
     </motion.article>
-
+  );
 };
+
