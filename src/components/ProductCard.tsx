@@ -119,12 +119,25 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
             )}
           </div>
 
-          {/* Quick View Indicator */}
+          {/* Quick View (mobile icon) */}
+          <button
+            onClick={handleQuickView}
+            aria-label={`Quick view ${product.name}`}
+            className="sm:hidden absolute bottom-2 right-2 p-2 rounded-full bg-background/90 backdrop-blur-md shadow-sm"
+          >
+            <Eye className="w-3.5 h-3.5 text-foreground" />
+          </button>
+
+          {/* Quick View (desktop hover) */}
           <div className="hidden sm:flex absolute bottom-0 left-0 right-0 items-center justify-center pb-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
-            <span className="px-6 py-2.5 text-xs font-medium tracking-[0.15em] uppercase bg-background/95 backdrop-blur-md text-foreground shadow-lg">
-              View Details
-            </span>
+            <button
+              onClick={handleQuickView}
+              className="px-6 py-2.5 text-xs font-medium tracking-[0.15em] uppercase bg-background/95 backdrop-blur-md text-foreground shadow-lg hover:bg-background"
+            >
+              Quick View
+            </button>
           </div>
+
         </div>
 
         {/* Product Info */}
