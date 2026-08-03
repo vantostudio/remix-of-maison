@@ -136,11 +136,123 @@ const Products = () => {
       </section>
 
       {/* Filters & Sorting */}
-      <section className="py-5 border-b border-border sticky top-16 md:top-20 bg-background/95 backdrop-blur-md z-40">
+      <section className="py-3 md:py-5 border-b border-border sticky top-16 md:top-20 bg-background/95 backdrop-blur-md z-40">
         <div className="container-full">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          {/* Mobile bar */}
+          <div className="flex md:hidden items-center gap-3">
+            <Sheet open={filtersOpen} onOpenChange={setFiltersOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="rounded-none flex-1 justify-between h-11 text-xs tracking-[0.1em] uppercase"
+                >
+                  <span className="flex items-center gap-2">
+                    <SlidersHorizontal className="w-4 h-4" />
+                    Filter & Sort
+                  </span>
+                  {hasActiveFilters && (
+                    <span className="w-2 h-2 rounded-full bg-primary" />
+                  )}
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="bottom" className="rounded-t-2xl max-h-[85vh] overflow-y-auto p-0">
+                <SheetHeader className="px-5 pt-5 pb-3 text-left">
+                  <SheetTitle className="font-serif text-xl">Filter & Sort</SheetTitle>
+                </SheetHeader>
+
+                <div className="px-5 pb-5 space-y-6">
+                  <div>
+                    <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3">
+                      Collection
+                    </p>
+                    <div className="flex flex-col">
+                      {[{ slug: "all", name: "All Pieces" }, ...collections].map((c) => (
+                        <button
+                          key={c.slug}
+                          onClick={() => handleFilterChange(c.slug)}
+                          className={cn(
+                            "flex items-center justify-between py-3 border-b border-border text-sm text-left",
+                            activeCollection === c.slug && "font-medium text-primary"
+                          )}
+                        >
+                          {c.name}
+                          {activeCollection === c.slug && <Check className="w-4 h-4" />}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3">
+                      Sort by
+                    </p>
+                    <div className="flex flex-col">
+                      {sortOptions.map((option) => (
+                        <button
+                          key={option.value}
+                          onClick={() => handleSortChange(option.value)}
+                          className={cn(
+                            "flex items-center justify-between py-3 border-b border-border text-sm text-left",
+                            activeSort === option.value && "font-medium text-primary"
+                          )}
+                        >
+                          {option.label}
+                          {activeSort === option.value && <Check className="w-4 h-4" />}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 pt-1">
+                    <Button
+                      variant="outline"
+                      onClick={() => setSearchParams(new URLSearchParams())}
+                      disabled={!hasActiveFilters}
+                      className="flex-1 rounded-none h-12 text-xs tracking-[0.15em] uppercase"
+                    >
+                      Reset
+                    </Button>
+                    <Button
+                      onClick={() => setFiltersOpen(false)}
+                      className="flex-1 rounded-none h-12 text-xs tracking-[0.15em] uppercase"
+                    >
+                      Show {filteredAndSortedProducts.length}
+                    </Button>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+
+          {/* Active filter chips (mobile) */}
+          {hasActiveFilters && (
+            <div className="flex md:hidden gap-2 mt-3 overflow-x-auto scrollbar-hide">
+              {activeCollection !== "all" && (
+                <button
+                  onClick={() => handleFilterChange("all")}
+                  className="flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 text-[11px] uppercase tracking-[0.1em] bg-accent text-accent-foreground"
+                >
+                  {currentCollection?.name}
+                  <X className="w-3 h-3" />
+                </button>
+              )}
+              {activeSort !== "newest" && (
+                <button
+                  onClick={() => handleSortChange("newest")}
+                  className="flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 text-[11px] uppercase tracking-[0.1em] bg-accent text-accent-foreground"
+                >
+                  {activeSortLabel}
+                  <X className="w-3 h-3" />
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* Desktop bar */}
+          <div className="hidden md:flex items-center justify-between gap-4">
             {/* Collection Filters */}
-            <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 -mb-2 md:mb-0 scrollbar-hide">
+            <div className="flex gap-2 overflow-x-auto scrollbar-hide">
               <Button
                 variant="ghost"
                 size="sm"
@@ -197,6 +309,7 @@ const Products = () => {
           </div>
         </div>
       </section>
+
 
       {/* Products Grid */}
       <section className="py-14 md:py-20">
