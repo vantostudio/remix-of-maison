@@ -18,7 +18,6 @@ export interface Product {
   materials: string;
   dimensions?: string;
   images: string[];
-  featured?: boolean;
   new?: boolean;
 }
 
@@ -105,7 +104,6 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=800&q=80",
       "https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=800&q=80",
     ],
-    featured: true,
   },
   {
     id: "orb-table-lamp",
@@ -138,7 +136,6 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80",
       "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=800&q=80",
     ],
-    featured: true,
   },
   {
     id: "serving-bowl",
@@ -170,7 +167,6 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
       "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=800&q=80",
     ],
-    featured: true,
   },
   {
     id: "woven-lounge-chair",
@@ -249,7 +245,6 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=80",
       "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=800&q=80",
     ],
-    featured: true,
   },
   // Seasonal
   {
@@ -303,10 +298,6 @@ export const products: Product[] = [
 
 export const getProductsByCollection = (collectionSlug: string): Product[] => {
   return products.filter((product) => product.collection === collectionSlug);
-};
-
-export const getFeaturedProducts = (): Product[] => {
-  return products.filter((product) => product.featured);
 };
 
 export const getNewProducts = (): Product[] => {
