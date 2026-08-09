@@ -107,7 +107,7 @@ export const Header = () => {
             {/* Wishlist Icon with Tooltip */}
             <Tooltip>
               <TooltipTrigger asChild>
-                <button className="relative p-2 hover:bg-accent transition-colors duration-300 group">
+                <Link to="/favorites" aria-label="Favorites" className="relative p-2 hover:bg-accent transition-colors duration-300 group">
                   <Heart className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                   <AnimatePresence>
                     {items.length > 0 && (
@@ -121,14 +121,14 @@ export const Header = () => {
                       </motion.span>
                     )}
                   </AnimatePresence>
-                </button>
+                </Link>
               </TooltipTrigger>
               <TooltipContent side="bottom" className="max-w-xs">
                 {items.length === 0 ? (
                   <p className="text-sm">Your wishlist is empty</p>
                 ) : (
                   <div className="space-y-2">
-                    <p className="text-sm font-medium">{items.length} saved {items.length === 1 ? 'item' : 'items'}</p>
+                    <p className="text-sm font-medium">View favorites · {items.length} saved {items.length === 1 ? 'item' : 'items'}</p>
                     <div className="space-y-1">
                       {items.slice(0, 3).map((item) => (
                         <p key={item.id} className="text-xs text-muted-foreground truncate">
