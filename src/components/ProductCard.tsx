@@ -107,16 +107,6 @@ export const ProductCard = ({ product, index = 0, variant = "default" }: Product
                 New
               </motion.span>
             )}
-            {product.featured && (
-              <motion.span
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-                className="px-2 py-1 sm:px-3 sm:py-1.5 text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase bg-primary text-primary-foreground"
-              >
-                Featured
-              </motion.span>
-            )}
           </div>
 
           {/* Quick View (mobile icon) */}
