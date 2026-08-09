@@ -93,20 +93,37 @@ export const QuickViewDialog = ({ product, open, onOpenChange }: QuickViewDialog
                   <button
                     onClick={() => step(-1)}
                     aria-label="Previous image"
-                    className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/90 backdrop-blur-md"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/90 backdrop-blur-md hover:bg-background transition-colors"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => step(1)}
                     aria-label="Next image"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/90 backdrop-blur-md"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/90 backdrop-blur-md hover:bg-background transition-colors"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>
+                  <span className="absolute bottom-3 right-3 px-2 py-1 text-[10px] tracking-[0.15em] bg-background/85 backdrop-blur-md tabular-nums">
+                    {imageIndex + 1} / {product.images.length}
+                  </span>
+                  <div className="absolute bottom-3 left-3 flex gap-1.5">
+                    {product.images.map((img, i) => (
+                      <button
+                        key={img}
+                        onClick={() => setImageIndex(i)}
+                        aria-label={`Go to image ${i + 1}`}
+                        className={cn(
+                          "h-1.5 rounded-full transition-all duration-300",
+                          i === imageIndex ? "w-5 bg-foreground" : "w-1.5 bg-foreground/40"
+                        )}
+                      />
+                    ))}
+                  </div>
                 </>
               )}
             </div>
+
 
             {/* Thumbnails */}
             {product.images.length > 1 && (
