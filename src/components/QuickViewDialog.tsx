@@ -93,20 +93,37 @@ export const QuickViewDialog = ({ product, open, onOpenChange }: QuickViewDialog
                   <button
                     onClick={() => step(-1)}
                     aria-label="Previous image"
-                    className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/90 backdrop-blur-md"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/90 backdrop-blur-md hover:bg-background transition-colors"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => step(1)}
                     aria-label="Next image"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/90 backdrop-blur-md"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/90 backdrop-blur-md hover:bg-background transition-colors"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>
+                  <span className="absolute bottom-3 right-3 px-2 py-1 text-[10px] tracking-[0.15em] bg-background/85 backdrop-blur-md tabular-nums">
+                    {imageIndex + 1} / {product.images.length}
+                  </span>
+                  <div className="absolute bottom-3 left-3 flex gap-1.5">
+                    {product.images.map((img, i) => (
+                      <button
+                        key={img}
+                        onClick={() => setImageIndex(i)}
+                        aria-label={`Go to image ${i + 1}`}
+                        className={cn(
+                          "h-1.5 rounded-full transition-all duration-300",
+                          i === imageIndex ? "w-5 bg-foreground" : "w-1.5 bg-foreground/40"
+                        )}
+                      />
+                    ))}
+                  </div>
                 </>
               )}
             </div>
+
 
             {/* Thumbnails */}
             {product.images.length > 1 && (
@@ -142,24 +159,33 @@ export const QuickViewDialog = ({ product, open, onOpenChange }: QuickViewDialog
             <h2 className="font-serif text-2xl sm:text-3xl leading-tight mb-2">
               {product.name}
             </h2>
-            <p className="text-lg font-medium mb-4">
-              ${product.price.toLocaleString()}
-            </p>
+            <div className="flex items-baseline gap-3 mb-4">
+              <p className="text-lg font-medium">${product.price.toLocaleString()}</p>
+              <span className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground/70">
+                In stock
+              </span>
+            </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-5 line-clamp-4">
               {product.description}
             </p>
 
-            <dl className="space-y-1.5 text-xs text-muted-foreground/80 mb-5">
+            <dl className="grid grid-cols-1 gap-px bg-border border border-border mb-5 text-xs">
               {product.materials && (
-                <div className="flex gap-2">
+                <div className="flex gap-3 bg-background px-3 py-2.5">
                   <dt className="w-24 shrink-0 uppercase tracking-[0.15em] text-muted-foreground/60">Materials</dt>
-                  <dd className="flex-1">{product.materials}</dd>
+                  <dd className="flex-1 text-muted-foreground">{product.materials}</dd>
                 </div>
               )}
               {product.dimensions && (
-                <div className="flex gap-2">
+                <div className="flex gap-3 bg-background px-3 py-2.5">
                   <dt className="w-24 shrink-0 uppercase tracking-[0.15em] text-muted-foreground/60">Dimensions</dt>
-                  <dd className="flex-1">{product.dimensions}</dd>
+                  <dd className="flex-1 text-muted-foreground">{product.dimensions}</dd>
+                </div>
+              )}
+              {collection && (
+                <div className="flex gap-3 bg-background px-3 py-2.5">
+                  <dt className="w-24 shrink-0 uppercase tracking-[0.15em] text-muted-foreground/60">Collection</dt>
+                  <dd className="flex-1 text-muted-foreground">{collection.name}</dd>
                 </div>
               )}
             </dl>
@@ -168,6 +194,7 @@ export const QuickViewDialog = ({ product, open, onOpenChange }: QuickViewDialog
               <Truck className="w-3.5 h-3.5" />
               {product.price >= 500 ? "Free shipping on this piece" : "Free shipping over $500"}
             </p>
+
 
             <div className="mt-auto space-y-3">
               <div className="flex items-center justify-between gap-3">
