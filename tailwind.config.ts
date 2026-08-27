@@ -112,6 +112,14 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-6px)" },
         },
+        "tick": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "sweep": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -123,7 +131,10 @@ export default {
         "ken-burns": "ken-burns 20s ease-out forwards",
         "marquee": "marquee 40s linear infinite",
         "float": "float 6s ease-in-out infinite",
+        "tick": "tick 60s steps(60, end) infinite",
+        "sweep": "sweep 8s linear infinite",
       },
+
     },
   },
   plugins: [require("tailwindcss-animate")],
