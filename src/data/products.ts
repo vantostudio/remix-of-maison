@@ -1,95 +1,7 @@
-export interface Collection {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  image: string;
-  heroImage?: string;
-}
-
-export interface Product {
-  id: string;
-  name: string;
-  slug: string;
-  collection: string;
-  price: number;
-  description: string;
-  longDescription: string;
-  materials: string;
-  dimensions?: string;
-  images: string[];
-  new?: boolean;
-}
+import type { Product } from "@/types/catalog";
 
 const img = (id: string, w = 800) =>
   `https://images.unsplash.com/photo-${id}?w=${w}&q=80`;
-
-export const collections: Collection[] = [
-  {
-    id: "automatic",
-    name: "Automatic",
-    slug: "automatic",
-    description: "Self-winding movements powered by the motion of your wrist",
-    image: img("1523170335258-f5ed11844a49"),
-    heroImage: img("1523170335258-f5ed11844a49", 1920),
-  },
-  {
-    id: "chronograph",
-    name: "Chronograph",
-    slug: "chronograph",
-    description: "Precision stopwatch complications for measured moments",
-    image: img("1524592094714-0f0654e20314"),
-    heroImage: img("1524592094714-0f0654e20314", 1920),
-  },
-  {
-    id: "dive",
-    name: "Dive",
-    slug: "dive",
-    description: "Built for the Indian Ocean — 300m of quiet confidence",
-    image: img("1547996160-81dfa63595aa"),
-    heroImage: img("1547996160-81dfa63595aa", 1920),
-  },
-  {
-    id: "dress",
-    name: "Dress",
-    slug: "dress",
-    description: "Slim cases and clean dials for evenings that matter",
-    image: img("1522312346375-d1a52e2b99b3"),
-    heroImage: img("1522312346375-d1a52e2b99b3", 1920),
-  },
-  {
-    id: "field",
-    name: "Field & Pilot",
-    slug: "field",
-    description: "Legible, rugged tool watches made for the open road",
-    image: img("1434056886845-dac89ffe9b56"),
-    heroImage: img("1434056886845-dac89ffe9b56", 1920),
-  },
-  {
-    id: "skeleton",
-    name: "Skeleton",
-    slug: "skeleton",
-    description: "Open-worked dials that reveal the beating heart within",
-    image: img("1533139502658-0198f920d8e8"),
-    heroImage: img("1533139502658-0198f920d8e8", 1920),
-  },
-  {
-    id: "straps",
-    name: "Straps & Accessories",
-    slug: "straps",
-    description: "Leather, sailcloth and steel — change the mood in seconds",
-    image: img("1587836374828-4dbafa94cf0e"),
-    heroImage: img("1587836374828-4dbafa94cf0e", 1920),
-  },
-  {
-    id: "limited",
-    name: "Limited Editions",
-    slug: "limited",
-    description: "Numbered runs assembled in our Mombasa atelier",
-    image: img("1548171915-e79a380a2a4b"),
-    heroImage: img("1548171915-e79a380a2a4b", 1920),
-  },
-];
 
 export const products: Product[] = [
   // Automatic
@@ -132,7 +44,7 @@ export const products: Product[] = [
       "Built for people who count seconds. The Regatta runs a mechanical chronograph with a snap-crisp pusher feel, three sub-registers and a steel tachymeter bezel. The high-contrast panda dial stays readable at a glance, whether you are timing a lap or a dhow race off Fort Jesus.",
     materials: "Brushed and polished steel, sapphire crystal, steel bracelet",
     dimensions: "41mm case × 13.4mm thick · 20mm lugs",
-    images: [img("1524592094714-0f0654e20314"), img("1533139143976-30918502365b")],
+    images: [img("1524592094714-0f0654e20314"), img("1704783339057-3fb087d3bc98")],
   },
   {
     id: "meridian-racing",
@@ -145,7 +57,7 @@ export const products: Product[] = [
       "The Meridian takes its cues from mid-century racing dials — recessed registers, a thin red central seconds hand and a minute track that runs right to the edge. The perforated rally strap is cut from full-grain leather and softens beautifully with wear.",
     materials: "Steel case, sapphire crystal, perforated rally leather",
     dimensions: "42mm case × 13.8mm thick · 22mm lugs",
-    images: [img("1533139143976-30918502365b"), img("1524592094714-0f0654e20314")],
+    images: [img("1704783339057-3fb087d3bc98"), img("1524592094714-0f0654e20314")],
   },
   // Dive
   {
@@ -232,17 +144,17 @@ export const products: Product[] = [
   },
   // Skeleton
   {
-    id: "atelier-skeleton",
-    name: "Atelier Skeleton",
-    slug: "atelier-skeleton",
+    id: "nyali-skeleton",
+    name: "Nyali Skeleton",
+    slug: "nyali-skeleton",
     collection: "skeleton",
     price: 1180,
     description: "A fully open-worked dial, hand-finished bridges",
     longDescription:
-      "Our watchmakers spend two full days on each Atelier Skeleton, chamfering and brushing every bridge before assembly. The result is a dial that is barely a dial at all — just gears, springs and light. Best viewed slowly.",
+      "Every bridge on the Nyali is chamfered and brushed, so the result is a dial that is barely a dial at all — just gears, springs and light. One of the few pieces we keep on display permanently. Best viewed slowly.",
     materials: "Steel case, sapphire front and back, alligator-grain leather",
     dimensions: "40mm case × 11.8mm thick · 20mm lugs",
-    images: [img("1533139502658-0198f920d8e8"), img("1611591437281-460bfbe1220a")],
+    images: [img("1533139502658-0198f920d8e8"), img("1570570026471-86415ad50a9b")],
   },
   {
     id: "eclipse-skeleton-noir",
@@ -255,7 +167,7 @@ export const products: Product[] = [
       "The Eclipse hides in plain sight. A blackened, open-worked movement sits beneath a lightly smoked sapphire dial, so the mechanics appear and disappear as light moves across the wrist. Lumed hands keep it readable when the dial goes dark.",
     materials: "DLC-coated steel, smoked sapphire, rubber-backed leather",
     dimensions: "41mm case × 12.6mm thick · 22mm lugs",
-    images: [img("1611591437281-460bfbe1220a"), img("1533139502658-0198f920d8e8")],
+    images: [img("1570570026471-86415ad50a9b"), img("1533139502658-0198f920d8e8")],
   },
   // Straps & Accessories
   {
@@ -277,9 +189,9 @@ export const products: Product[] = [
     slug: "leather-watch-roll",
     collection: "straps",
     price: 140,
-    description: "Carries three watches, made by hand in Old Town",
+    description: "Carries three watches, stitched in Old Town",
     longDescription:
-      "Stitched by a leatherworker two streets from our workshop in Mombasa Old Town. Full-grain hide outside, suede-lined cushions inside, and a wrap tie that keeps three watches safe in a carry-on.",
+      "Stitched by a leatherworker two streets from the shop in Mombasa Old Town. Full-grain hide outside, suede-lined cushions inside, and a wrap tie that keeps three watches safe in a carry-on.",
     materials: "Full-grain leather, suede lining",
     dimensions: "Holds 3 watches · 26cm rolled",
     images: [img("1585123334904-845d60e97b29"), img("1587836374828-4dbafa94cf0e")],
@@ -293,10 +205,10 @@ export const products: Product[] = [
     price: 1450,
     description: "150 pieces, coral-stone textured dial, numbered caseback",
     longDescription:
-      "A tribute to the coral-stone walls that have watched over our harbour for four centuries. The dial is textured to echo cut coral rag, the seconds hand is finished in oxidised copper, and each caseback is engraved with its number out of 150.",
+      "A tribute to the coral-stone walls that have watched over the harbour for four centuries. The dial is textured to echo cut coral rag, the seconds hand is finished in oxidised copper, and each caseback is engraved with its number out of 150.",
     materials: "Steel case, textured stone-effect dial, engraved caseback",
     dimensions: "40mm case × 11.9mm thick · 20mm lugs",
-    images: [img("1548171915-e79a380a2a4b"), img("1519861531473-9200262188bf")],
+    images: [img("1548171915-e79a380a2a4b"), img("1748327929572-2ccf5716d3b9")],
     new: true,
   },
   {
@@ -310,31 +222,6 @@ export const products: Product[] = [
       "Sailors on this coast have read the moon for centuries. The Monsoon carries an aventurine moonphase disc at twelve, hand-set indices and a deep midnight dial. Limited to 80 pieces, each delivered with a printed tide and monsoon almanac.",
     materials: "Steel case, aventurine moonphase disc, sapphire crystal",
     dimensions: "40mm case × 12.1mm thick · 20mm lugs",
-    images: [img("1519861531473-9200262188bf"), img("1548171915-e79a380a2a4b")],
+    images: [img("1748327929572-2ccf5716d3b9"), img("1548171915-e79a380a2a4b")],
   },
 ];
-
-export const getProductsByCollection = (collectionSlug: string): Product[] => {
-  return products.filter((product) => product.collection === collectionSlug);
-};
-
-export const getNewProducts = (): Product[] => {
-  return products.filter((product) => product.new);
-};
-
-export const getProductBySlug = (slug: string): Product | undefined => {
-  return products.find((product) => product.slug === slug);
-};
-
-export const getCollectionBySlug = (slug: string): Collection | undefined => {
-  return collections.find((collection) => collection.slug === slug);
-};
-
-export const getRelatedProducts = (productId: string, limit = 4): Product[] => {
-  const product = products.find((p) => p.id === productId);
-  if (!product) return [];
-
-  return products
-    .filter((p) => p.collection === product.collection && p.id !== productId)
-    .slice(0, limit);
-};
