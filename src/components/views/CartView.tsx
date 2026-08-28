@@ -9,13 +9,14 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
 import { useCartHydrated } from "@/hooks/useCartHydrated";
 import { formatPrice } from "@/lib/format";
+import { deliveryFor } from "@/lib/pricing";
 
 export const CartView = () => {
   const hydrated = useCartHydrated();
   const { items, updateQuantity, removeItem, getSubtotal } = useCart();
   const subtotal = getSubtotal();
-  const shipping = subtotal > 500 ? 0 : 25;
-  const total = subtotal + shipping;
+  const delivery = deliveryFor(subtotal);
+  const total = subtotal + delivery;
 
   // The bag comes from localStorage, so the first client render has to match
   // the server's empty one. Show a placeholder rather than flashing "empty".
@@ -144,9 +145,9 @@ export const CartView = () => {
                 <dd className="text-foreground numerals">{formatPrice(subtotal)}</dd>
               </div>
               <div className="flex justify-between text-body-sm">
-                <dt className="text-muted-foreground">Shipping</dt>
+                <dt className="text-muted-foreground">Delivery</dt>
                 <dd className="text-foreground numerals">
-                  {shipping === 0 ? "Free" : formatPrice(shipping)}
+                  {delivery === 0 ? "Free" : formatPrice(delivery)}
                 </dd>
               </div>
             </dl>

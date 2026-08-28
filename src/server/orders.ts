@@ -6,7 +6,7 @@ import type { OrderRequestInput } from "@/lib/validation";
 export interface OrderRequestResult {
   reference: string;
   subtotal: number;
-  currency: "USD";
+  currency: "KES";
   receivedAt: string;
 }
 
@@ -39,7 +39,7 @@ export async function submitOrderRequest(
   const result: OrderRequestResult = {
     reference: reference(),
     subtotal,
-    currency: "USD",
+    currency: "KES",
     receivedAt: new Date().toISOString(),
   };
 

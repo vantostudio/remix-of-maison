@@ -101,6 +101,10 @@ export const Footer = ({ collections }: FooterProps) => {
               {site.phone}
             </a>
             <p className="mt-2.5 text-body-sm text-subtle-foreground">{site.hours}</p>
+
+            <div className="hairline my-4" />
+            <p className="kicker mb-1.5">Payment</p>
+            <p className="text-body-sm text-muted-foreground">{site.payment}</p>
           </div>
         </div>
       </div>

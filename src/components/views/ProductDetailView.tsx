@@ -12,6 +12,7 @@ import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/hooks/use-toast";
 import { accentFor } from "@/lib/accents";
 import { formatPrice } from "@/lib/format";
+import { FREE_DELIVERY_THRESHOLD, STANDARD_DELIVERY } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 import type { Collection, Product } from "@/types/catalog";
 
@@ -38,7 +39,12 @@ export const ProductDetailView = ({
     ...(product.dimensions
       ? [{ label: "Dimensions", value: product.dimensions }]
       : []),
-    { label: "Shipping", value: "Complimentary worldwide. Payment on delivery available in Mombasa." },
+    {
+      label: "Delivery",
+      // Derived from the pricing constants so the promise cannot drift from
+      // what the bag actually charges.
+      value: `Free countrywide over ${formatPrice(FREE_DELIVERY_THRESHOLD)}, otherwise ${formatPrice(STANDARD_DELIVERY)}. Payment on delivery available in Mombasa.`,
+    },
     { label: "Returns", value: "14 days, unworn, in its original packaging." },
     { label: "Warranty", value: "Five years on the movement, handled at the shop." },
   ];

@@ -16,6 +16,7 @@ export const site = {
     line2: "Mombasa, Kenya",
   },
   hours: "Mon–Sat, 9am–6pm EAT",
+  payment: "M-Pesa, card, or payment on delivery.",
   social: {
     instagram: {
       label: "Instagram",

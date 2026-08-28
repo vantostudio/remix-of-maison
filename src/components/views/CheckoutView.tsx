@@ -11,6 +11,7 @@ import { useCart } from "@/hooks/useCart";
 import { useCartHydrated } from "@/hooks/useCartHydrated";
 import { useToast } from "@/hooks/use-toast";
 import { formatPrice } from "@/lib/format";
+import { deliveryFor } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 
 /**
@@ -52,8 +53,8 @@ export const CheckoutView = () => {
   });
 
   const subtotal = getSubtotal();
-  const shipping = subtotal > 500 ? 0 : 25;
-  const total = subtotal + shipping;
+  const delivery = deliveryFor(subtotal);
+  const total = subtotal + delivery;
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -279,9 +280,9 @@ export const CheckoutView = () => {
                 <dd className="text-foreground numerals">{formatPrice(subtotal)}</dd>
               </div>
               <div className="flex justify-between text-body-sm">
-                <dt className="text-muted-foreground">Shipping</dt>
+                <dt className="text-muted-foreground">Delivery</dt>
                 <dd className="text-foreground numerals">
-                  {shipping === 0 ? "Free" : formatPrice(shipping)}
+                  {delivery === 0 ? "Free" : formatPrice(delivery)}
                 </dd>
               </div>
             </dl>
