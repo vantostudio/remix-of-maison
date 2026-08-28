@@ -8,6 +8,7 @@ import {
 import { SiteShell } from "@/components/layout/SiteShell";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { getCollections } from "@/server/catalog";
+import { getSiteUrl } from "@/lib/site-url";
 import "@/styles/globals.css";
 
 const serif = Cormorant_Garamond({
@@ -32,10 +33,10 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: siteUrl,
   title: {
     default: "Kairos — Mechanical Watches, Mombasa",
     template: "%s · Kairos",
