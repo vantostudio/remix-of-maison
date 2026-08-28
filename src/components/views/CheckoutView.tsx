@@ -8,6 +8,7 @@ import { AlertCircle } from "lucide-react";
 import { Media } from "@/components/media/Media";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
+import { useCartHydrated } from "@/hooks/useCartHydrated";
 import { useToast } from "@/hooks/use-toast";
 import { formatPrice } from "@/lib/format";
 import { cn } from "@/lib/utils";
@@ -35,6 +36,7 @@ const inputClass =
 export const CheckoutView = () => {
   const router = useRouter();
   const { toast } = useToast();
+  const hydrated = useCartHydrated();
   const { items, getSubtotal, clearCart } = useCart();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -116,6 +118,32 @@ export const CheckoutView = () => {
       setIsSubmitting(false);
     }
   };
+
+  // Same reason as the bag: wait for the persisted cart before deciding
+  // whether there is anything to check out.
+  if (!hydrated) {
+    return (
+      <section className="band-surface py-14 md:py-20">
+        <div className="container-page">
+          <h1 className="text-heading-lg">Check out.</h1>
+          <p className="sr-only">Loading your order…</p>
+          <div className="mt-10 grid lg:grid-cols-3 gap-10 lg:gap-16 items-start">
+            <div className="lg:col-span-2 grid grid-cols-12 gap-x-3 sm:gap-x-4 gap-y-5" aria-hidden>
+              {["col-span-6", "col-span-6", "col-span-12", "col-span-12", "col-span-7", "col-span-5"].map(
+                (span, index) => (
+                  <div key={index} className={span}>
+                    <div className="h-4 w-24 rounded-md bg-surface-sunk animate-pulse" />
+                    <div className="mt-2 h-11 rounded-md bg-surface-sunk animate-pulse" />
+                  </div>
+                ),
+              )}
+            </div>
+            <div aria-hidden className="h-72 rounded-3xl bg-surface-sunk animate-pulse" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (items.length === 0) {
     return (

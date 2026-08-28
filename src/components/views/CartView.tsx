@@ -7,13 +7,46 @@ import { QuantitySelector } from "@/components/commerce/QuantitySelector";
 import { Media } from "@/components/media/Media";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
+import { useCartHydrated } from "@/hooks/useCartHydrated";
 import { formatPrice } from "@/lib/format";
 
 export const CartView = () => {
+  const hydrated = useCartHydrated();
   const { items, updateQuantity, removeItem, getSubtotal } = useCart();
   const subtotal = getSubtotal();
   const shipping = subtotal > 500 ? 0 : 25;
   const total = subtotal + shipping;
+
+  // The bag comes from localStorage, so the first client render has to match
+  // the server's empty one. Show a placeholder rather than flashing "empty".
+  if (!hydrated) {
+    return (
+      <section className="band-surface py-14 md:py-20">
+        <div className="container-page">
+          <h1 className="text-heading-lg">Your bag.</h1>
+          <p className="sr-only">Loading your bag…</p>
+          <div className="mt-10 grid lg:grid-cols-3 gap-10 lg:gap-16 items-start">
+            <div className="lg:col-span-2" aria-hidden>
+              {[0, 1].map((row) => (
+                <div key={row} className="flex gap-5 py-6 border-b border-hairline first:pt-0">
+                  <div className="w-24 h-28 sm:w-28 sm:h-32 shrink-0 rounded-xl bg-surface-sunk animate-pulse" />
+                  <div className="flex-1 space-y-3 py-1">
+                    <div className="h-5 w-1/2 rounded-md bg-surface-sunk animate-pulse" />
+                    <div className="h-4 w-1/3 rounded-md bg-surface-sunk animate-pulse" />
+                    <div className="h-10 w-32 rounded-xl bg-surface-sunk animate-pulse" />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div
+              aria-hidden
+              className="h-64 rounded-3xl bg-surface-sunk animate-pulse"
+            />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (items.length === 0) {
     return (

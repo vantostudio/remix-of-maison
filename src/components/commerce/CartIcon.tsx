@@ -4,9 +4,14 @@ import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
 
 import { useCart } from "@/hooks/useCart";
+import { useCartHydrated } from "@/hooks/useCartHydrated";
 
 export const CartIcon = () => {
-  const itemCount = useCart((state) => state.getItemCount());
+  const hydrated = useCartHydrated();
+  const storedCount = useCart((state) => state.getItemCount());
+
+  // Until the persisted bag has rehydrated, render what the server rendered.
+  const itemCount = hydrated ? storedCount : 0;
 
   return (
     <Link
