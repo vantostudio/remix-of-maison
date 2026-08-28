@@ -41,7 +41,7 @@ const Index = () => {
             alt="Curated home lifestyle"
             className="w-full h-[120%] object-cover animate-ken-burns"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-charcoal/10 to-charcoal/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-onyx/30 via-onyx/10 to-onyx/50" />
         </motion.div>
 
         <motion.div
@@ -119,7 +119,7 @@ const Index = () => {
                 alt={featuredCollection.name}
                 className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-onyx/40 via-transparent to-transparent" />
             </motion.div>
 
             <motion.div
@@ -155,7 +155,7 @@ const Index = () => {
       </section>
 
       {/* Latest Products */}
-      <section className="py-20 md:py-28 bg-linen">
+      <section className="py-20 md:py-28 bg-panel">
         <div className="container-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 md:mb-14">
             <motion.div
@@ -266,7 +266,7 @@ const Index = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="py-24 md:py-32 bg-linen">
+      <section className="py-24 md:py-32 bg-panel">
         <div className="container-narrow text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -342,7 +342,7 @@ const Index = () => {
                   alt="Instagram post"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/40 transition-colors duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-onyx/0 group-hover:bg-onyx/40 transition-colors duration-300 flex items-center justify-center">
                   <Instagram className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </motion.a>
