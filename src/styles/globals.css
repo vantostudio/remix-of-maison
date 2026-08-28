@@ -1,0 +1,412 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ============================================================================
+   KAIROS — Lume
+
+   One idea runs the whole theme: a dial's lume is invisible in daylight and
+   glows at night. So the accent is not a fixed colour — it is a material that
+   behaves differently depending on the light in the room. In the light theme
+   it reads as aged patina green, quiet and matte. In the dark theme the same
+   token becomes luminous.
+
+   Light is coral limestone: the warm, sand-toned paper of Mombasa Old Town.
+   Dark is a night dive: deep ocean with almost no blue-black harshness.
+
+   There is no theme toggle. `prefers-color-scheme` decides, `color-scheme`
+   tells the browser to match its own controls, and every token below is
+   declared once per mode and referenced through `@theme inline` so the
+   utilities resolve at use time rather than being frozen at build time.
+   ========================================================================= */
+
+:root {
+  color-scheme: light dark;
+
+  /* ---- Light: coral limestone at noon -------------------------------- */
+  --background: #f4f1ea;
+  --surface: #fbf9f5;
+  --surface-sunk: #eae5db;
+
+  --foreground: #191612;
+  --muted-foreground: #5a5249;
+  --subtle-foreground: #6e6659;
+
+  --hairline: #ddd6c9;
+  --control: #e6e0d4;
+  --control-hover: #d8d0c0;
+
+  /* Lume, unlit: patina on brass that has spent years in salt air. */
+  --accent: #0d7a56;
+  --accent-hover: #0a6547;
+  --on-accent: #ffffff;
+  --accent-ring: #0d7a56;
+
+  --brass: #83642b;
+  --link: #0d6b8a;
+  --destructive: #a5241b;
+  --on-destructive: #ffffff;
+
+  /* Collection tints — word-level colour only. */
+  --tint-automatic: #0d7a56;
+  --tint-chronograph: #b34700;
+  --tint-dive: #06788c;
+  --tint-field: #2f5fa8;
+  --tint-skeleton: #6d4bd8;
+  --tint-limited: #83642b;
+
+  /* A scrim that stays dark in both themes. */
+  --scrim: rgb(12 10 8 / 0.55);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* ---- Dark: a night dive ------------------------------------------ */
+    --background: #0b1013;
+    --surface: #121a1e;
+    --surface-sunk: #070c0f;
+
+    --foreground: #eef2f0;
+    --muted-foreground: #a3b0ad;
+    --subtle-foreground: #7f8d89;
+
+    --hairline: #1f2c31;
+    --control: #1a2429;
+    --control-hover: #26333a;
+
+    /* Lume, charged. */
+    --accent: #6ee7a8;
+    --accent-hover: #8df0be;
+    --on-accent: #05221a;
+    --accent-ring: #6ee7a8;
+
+    --brass: #d9b877;
+    --link: #7ecbe0;
+    --destructive: #ff6b5e;
+    --on-destructive: #2a0b08;
+
+    --tint-automatic: #6ee7a8;
+    --tint-chronograph: #ff9a52;
+    --tint-dive: #5fd0e3;
+    --tint-field: #8fb6ff;
+    --tint-skeleton: #b9a2ff;
+    --tint-limited: #d9b877;
+
+    --scrim: rgb(2 6 8 / 0.66);
+  }
+}
+
+@theme inline {
+  /* Referencing the variables (rather than restating the colours) is what
+     lets a single utility follow the device theme. */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-sunk: var(--surface-sunk);
+
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+
+  --color-hairline: var(--hairline);
+  --color-control: var(--control);
+  --color-control-hover: var(--control-hover);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-on-foreground: var(--background);
+
+  --color-brass: var(--brass);
+  --color-link: var(--link);
+  --color-destructive: var(--destructive);
+  --color-on-destructive: var(--on-destructive);
+
+  --color-tint-automatic: var(--tint-automatic);
+  --color-tint-chronograph: var(--tint-chronograph);
+  --color-tint-dive: var(--tint-dive);
+  --color-tint-field: var(--tint-field);
+  --color-tint-skeleton: var(--tint-skeleton);
+  --color-tint-limited: var(--tint-limited);
+
+  /* Aliases the shadcn primitives expect. */
+  --color-border: var(--hairline);
+  --color-input: var(--hairline);
+  --color-ring: var(--accent-ring);
+  --color-card: var(--surface);
+  --color-popover: var(--surface);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--on-accent);
+  --color-secondary: var(--control);
+  --color-muted: var(--surface-sunk);
+  --color-destructive-foreground: var(--on-destructive);
+}
+
+@theme {
+  /* ---- Type ----------------------------------------------------------
+     A serif for display — this is a shop that sells objects with history —
+     a grotesk for interface, and mono for reference numbers, which want to
+     read as data rather than prose.                                       */
+  --font-sans: var(--font-kairos-text), Futura, ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-kairos-display), Garamond, Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* ---- Type scale ----------------------------------------------------
+     Standard sizes on a 16px base. Every step above body is fluid: it grows
+     with the viewport between a phone-safe minimum and a desktop maximum, so
+     a heading never needs a breakpoint override in the markup.             */
+  --text-caption: 0.75rem;                                   /* 12          */
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.08em;
+
+  --text-body-sm: 0.875rem;                                  /* 14          */
+  --text-body-sm--line-height: 1.55;
+
+  --text-body: 1rem;                                         /* 16          */
+  --text-body--line-height: 1.65;
+
+  --text-body-lg: clamp(1.0625rem, 0.25vw + 1rem, 1.1875rem); /* 17 → 19    */
+  --text-body-lg--line-height: 1.6;
+
+  --text-subheading: clamp(1.1875rem, 0.5vw + 1.06rem, 1.4375rem); /* 19 → 23 */
+  --text-subheading--line-height: 1.3;
+  --text-subheading--letter-spacing: -0.012em;
+
+  --text-numeral: clamp(1.875rem, 1.7vw + 1.45rem, 2.625rem); /* 30 → 42    */
+  --text-numeral--line-height: 1;
+  --text-numeral--letter-spacing: -0.02em;
+
+  --text-heading-sm: clamp(1.5rem, 1.25vw + 1.19rem, 2.125rem); /* 24 → 34   */
+  --text-heading-sm--line-height: 1.18;
+  --text-heading-sm--letter-spacing: -0.02em;
+
+  --text-heading: clamp(2rem, 2.6vw + 1.35rem, 3.25rem);     /* 32 → 52     */
+  --text-heading--line-height: 1.08;
+  --text-heading--letter-spacing: -0.028em;
+
+  --text-heading-lg: clamp(2.625rem, 4.3vw + 1.55rem, 4.75rem); /* 42 → 76  */
+  --text-heading-lg--line-height: 0.98;
+  --text-heading-lg--letter-spacing: -0.035em;
+
+  --text-display: clamp(3.25rem, 7vw + 1.5rem, 7.5rem);      /* 52 → 120   */
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.045em;
+
+  /* ---- Aspect ratios used by the editorial grids -------------------- */
+  --aspect-21\/9: 21 / 9;
+  --aspect-16\/9: 16 / 9;
+  --aspect-4\/3: 4 / 3;
+  --aspect-3\/4: 3 / 4;
+  --aspect-2\/3: 2 / 3;
+
+  /* ---- Geometry ------------------------------------------------------
+     Soft but not round: a cushioned case back, not a pill.               */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.5rem;
+}
+
+/* ============================================================================
+   Base
+   ========================================================================= */
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--hairline);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--background);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 28%, transparent);
+    color: var(--foreground);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--hairline);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--subtle-foreground);
+  }
+}
+
+/* ============================================================================
+   Composites
+   ========================================================================= */
+
+@layer components {
+  .container-page {
+    @apply w-full max-w-[1440px] mx-auto px-6 md:px-10;
+  }
+
+  .container-content {
+    @apply w-full max-w-[980px] mx-auto px-6 md:px-10;
+  }
+
+  .band {
+    @apply w-full py-20 md:py-28;
+  }
+
+  .band-surface {
+    background-color: var(--surface);
+  }
+
+  .band-base {
+    background-color: var(--background);
+  }
+
+  .hairline {
+    @apply h-px w-full bg-hairline;
+  }
+
+  .link-inline {
+    color: var(--link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .kicker {
+    @apply text-caption font-medium uppercase text-subtle-foreground;
+  }
+
+  /* A hairline rule that fades at both ends — the one flourish kept from
+     the old dial. It picks up the lume, so it glows only in the dark. */
+  .rule-lume {
+    @apply h-px w-full;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--accent) 55%, transparent),
+      transparent
+    );
+  }
+
+  /* One optimized photograph is the hero stage. The watch is already angled;
+     a slow transform adds depth without WebGL or another runtime dependency. */
+  .hero-stage {
+    @apply relative isolate min-h-[calc(100svh-3rem)] overflow-hidden;
+    background: #080909;
+  }
+
+  .hero-stage__media {
+    @apply absolute;
+    inset: -3%;
+    transform: scale(1.045) rotate(-0.45deg);
+    transform-origin: 64% 48%;
+  }
+
+  .hero-stage__image {
+    object-position: 62% center;
+    filter: saturate(0.88) contrast(1.06) brightness(0.88);
+  }
+
+  .hero-stage__scrim {
+    @apply absolute inset-0 z-1;
+    background:
+      linear-gradient(90deg, rgb(3 4 4 / 0.88) 0%, rgb(3 4 4 / 0.66) 34%, rgb(3 4 4 / 0.12) 72%),
+      linear-gradient(180deg, rgb(3 4 4 / 0.18) 20%, rgb(3 4 4 / 0.1) 52%, rgb(3 4 4 / 0.84) 100%);
+  }
+
+  .hero-product-card {
+    @apply block rounded-2xl border border-white/20 p-5 text-white outline-none transition-colors duration-300 hover:border-white/40 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a09] sm:p-6;
+    background: rgb(8 10 10 / 0.38);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+
+  .hero-scroll-cue {
+    @apply absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 items-center gap-3 text-caption uppercase tracking-[0.18em] text-white/60 xl:flex;
+    writing-mode: vertical-rl;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-stage__media {
+    inset: -2%;
+    transform: scale(1.06) rotate(-0.35deg);
+    transform-origin: 60% 44%;
+  }
+
+  .hero-stage__image {
+    object-position: 58% center;
+  }
+
+  .hero-stage__scrim {
+    background:
+      linear-gradient(180deg, rgb(3 4 4 / 0.18) 0%, rgb(3 4 4 / 0.08) 30%, rgb(3 4 4 / 0.62) 58%, rgb(3 4 4 / 0.96) 100%),
+      linear-gradient(90deg, rgb(3 4 4 / 0.46), transparent 76%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-stage__media {
+    animation: hero-watch-drift 16s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+
+@keyframes hero-watch-drift {
+  from {
+    transform: scale(1.045) rotate(-0.45deg) translate3d(-0.25%, -0.25%, 0);
+  }
+
+  to {
+    transform: scale(1.085) rotate(0.35deg) translate3d(0.5%, 0.35%, 0);
+  }
+}
+
+/* ============================================================================
+   Utilities
+   ========================================================================= */
+
+@utility numerals {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility scrim {
+  background-color: var(--scrim);
+}
