@@ -36,8 +36,8 @@ export const CollectionCard = ({ collection, index = 0, variant = "default" }: C
           />
 
           {/* Multi-layer gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/10 to-transparent" />
-          <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors duration-700" />
+          <div className="absolute inset-0 bg-gradient-to-t from-onyx/70 via-onyx/10 to-transparent" />
+          <div className="absolute inset-0 bg-onyx/0 group-hover:bg-onyx/20 transition-colors duration-700" />
 
           {/* Content */}
           <div className="absolute inset-0 flex flex-col justify-end p-7 md:p-8">

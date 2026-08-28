@@ -111,7 +111,7 @@ const Products = () => {
             alt={currentCollection?.name || "All Products"}
             className="w-full h-full object-cover transition-opacity duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-charcoal/20 to-charcoal/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-onyx/60 via-onyx/20 to-onyx/10" />
         </div>
 
         <div className="relative container-full h-full flex flex-col justify-end pb-12 md:pb-16">
@@ -360,7 +360,7 @@ const Products = () => {
             alt="Interior lifestyle"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/50" />
+          <div className="absolute inset-0 bg-onyx/50" />
         </div>
         <div className="relative h-full flex items-center justify-center text-center">
           <motion.div
@@ -378,7 +378,7 @@ const Products = () => {
             <Button
               asChild
               size="lg"
-              className="rounded-none px-10 py-6 text-sm tracking-[0.15em] uppercase bg-white text-charcoal hover:bg-white/90"
+              className="rounded-none px-10 py-6 text-sm tracking-[0.15em] uppercase bg-white text-onyx hover:bg-white/90"
             >
               <a href="mailto:hello@maison.com">
                 Contact Us

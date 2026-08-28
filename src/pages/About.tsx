@@ -23,7 +23,7 @@ const About = () => {
             alt="Artisan workshop"
             className="w-full h-[120%] object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/20 via-charcoal/10 to-charcoal/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-onyx/20 via-onyx/10 to-onyx/50" />
         </motion.div>
 
         <div className="relative container-full h-full flex flex-col justify-end pb-20 md:pb-28">
@@ -136,7 +136,7 @@ const About = () => {
                 alt="Workshop detail"
                 className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-charcoal/20" />
+              <div className="absolute inset-0 bg-onyx/20" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -205,7 +205,7 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="py-24 md:py-36 bg-linen">
+      <section className="py-24 md:py-36 bg-panel">
         <div className="container-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -310,7 +310,7 @@ const About = () => {
             alt=""
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/60" />
+          <div className="absolute inset-0 bg-onyx/60" />
         </div>
 
         <div className="relative container-narrow text-center">
@@ -333,7 +333,7 @@ const About = () => {
             <Button
               asChild
               size="lg"
-              className="rounded-none px-12 py-6 text-sm tracking-[0.15em] uppercase bg-white text-charcoal hover:bg-white/90"
+              className="rounded-none px-12 py-6 text-sm tracking-[0.15em] uppercase bg-white text-onyx hover:bg-white/90"
             >
               <a href="mailto:hello@maison.com">
                 Get in Touch

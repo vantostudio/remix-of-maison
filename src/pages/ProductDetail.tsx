@@ -307,7 +307,7 @@ const ProductDetail = () => {
 
       {/* Related Products */}
       {relatedProducts.length > 0 && (
-        <section className="py-20 md:py-28 bg-linen">
+        <section className="py-20 md:py-28 bg-panel">
           <div className="container-full">
             <div className="flex items-end justify-between mb-12">
               <div>
