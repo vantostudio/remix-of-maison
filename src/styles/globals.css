@@ -145,8 +145,8 @@
      A serif for display — this is a shop that sells objects with history —
      a grotesk for interface, and mono for reference numbers, which want to
      read as data rather than prose.                                       */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-bodoni), Didot, Georgia, serif;
+  --font-sans: var(--font-kairos-text), Futura, ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-kairos-display), Garamond, Georgia, serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 
   /* ---- Type scale ----------------------------------------------------
@@ -161,34 +161,34 @@
   --text-body-sm--line-height: 1.55;
 
   --text-body: 1rem;                                         /* 16          */
-  --text-body--line-height: 1.6;
+  --text-body--line-height: 1.65;
 
-  --text-body-lg: clamp(1rem, 0.25vw + 0.94rem, 1.125rem);   /* 16 → 18     */
+  --text-body-lg: clamp(1.0625rem, 0.25vw + 1rem, 1.1875rem); /* 17 → 19    */
   --text-body-lg--line-height: 1.6;
 
-  --text-subheading: clamp(1.125rem, 0.4vw + 1.03rem, 1.25rem);   /* 18 → 20 */
-  --text-subheading--line-height: 1.35;
-  --text-subheading--letter-spacing: -0.01em;
+  --text-subheading: clamp(1.1875rem, 0.5vw + 1.06rem, 1.4375rem); /* 19 → 23 */
+  --text-subheading--line-height: 1.3;
+  --text-subheading--letter-spacing: -0.012em;
 
-  --text-numeral: clamp(1.75rem, 1.4vw + 1.4rem, 2.25rem);   /* 28 → 36     */
+  --text-numeral: clamp(1.875rem, 1.7vw + 1.45rem, 2.625rem); /* 30 → 42    */
   --text-numeral--line-height: 1;
   --text-numeral--letter-spacing: -0.02em;
 
-  --text-heading-sm: clamp(1.375rem, 1.1vw + 1.1rem, 1.75rem);    /* 22 → 28 */
-  --text-heading-sm--line-height: 1.25;
-  --text-heading-sm--letter-spacing: -0.015em;
+  --text-heading-sm: clamp(1.5rem, 1.25vw + 1.19rem, 2.125rem); /* 24 → 34   */
+  --text-heading-sm--line-height: 1.18;
+  --text-heading-sm--letter-spacing: -0.02em;
 
-  --text-heading: clamp(1.75rem, 2.4vw + 1.15rem, 2.5rem);   /* 28 → 40     */
-  --text-heading--line-height: 1.15;
-  --text-heading--letter-spacing: -0.02em;
+  --text-heading: clamp(2rem, 2.6vw + 1.35rem, 3.25rem);     /* 32 → 52     */
+  --text-heading--line-height: 1.08;
+  --text-heading--letter-spacing: -0.028em;
 
-  --text-heading-lg: clamp(2.25rem, 4.2vw + 1.2rem, 3.75rem); /* 36 → 60    */
-  --text-heading-lg--line-height: 1.08;
-  --text-heading-lg--letter-spacing: -0.025em;
+  --text-heading-lg: clamp(2.625rem, 4.3vw + 1.55rem, 4.75rem); /* 42 → 76  */
+  --text-heading-lg--line-height: 0.98;
+  --text-heading-lg--letter-spacing: -0.035em;
 
-  --text-display: clamp(2.75rem, 6vw + 1.25rem, 5.5rem);     /* 44 → 88     */
-  --text-display--line-height: 1.02;
-  --text-display--letter-spacing: -0.03em;
+  --text-display: clamp(3.25rem, 7vw + 1.5rem, 7.5rem);      /* 52 → 120   */
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.045em;
 
   /* ---- Aspect ratios used by the editorial grids -------------------- */
   --aspect-21\/9: 21 / 9;
@@ -230,12 +230,13 @@
     font-size: var(--text-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
-    font-weight: 400;
-    letter-spacing: -0.02em;
+    font-weight: 500;
+    text-wrap: balance;
   }
 
   ::selection {
@@ -311,6 +312,79 @@
       color-mix(in srgb, var(--accent) 55%, transparent),
       transparent
     );
+  }
+
+  /* One optimized photograph is the hero stage. The watch is already angled;
+     a slow transform adds depth without WebGL or another runtime dependency. */
+  .hero-stage {
+    @apply relative isolate min-h-[calc(100svh-3rem)] overflow-hidden;
+    background: #080909;
+  }
+
+  .hero-stage__media {
+    @apply absolute;
+    inset: -3%;
+    transform: scale(1.045) rotate(-0.45deg);
+    transform-origin: 64% 48%;
+  }
+
+  .hero-stage__image {
+    object-position: 62% center;
+    filter: saturate(0.88) contrast(1.06) brightness(0.88);
+  }
+
+  .hero-stage__scrim {
+    @apply absolute inset-0 z-1;
+    background:
+      linear-gradient(90deg, rgb(3 4 4 / 0.88) 0%, rgb(3 4 4 / 0.66) 34%, rgb(3 4 4 / 0.12) 72%),
+      linear-gradient(180deg, rgb(3 4 4 / 0.18) 20%, rgb(3 4 4 / 0.1) 52%, rgb(3 4 4 / 0.84) 100%);
+  }
+
+  .hero-product-card {
+    @apply block rounded-2xl border border-white/20 p-5 text-white outline-none transition-colors duration-300 hover:border-white/40 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a09] sm:p-6;
+    background: rgb(8 10 10 / 0.38);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+
+  .hero-scroll-cue {
+    @apply absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 items-center gap-3 text-caption uppercase tracking-[0.18em] text-white/60 xl:flex;
+    writing-mode: vertical-rl;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-stage__media {
+    inset: -2%;
+    transform: scale(1.06) rotate(-0.35deg);
+    transform-origin: 60% 44%;
+  }
+
+  .hero-stage__image {
+    object-position: 58% center;
+  }
+
+  .hero-stage__scrim {
+    background:
+      linear-gradient(180deg, rgb(3 4 4 / 0.18) 0%, rgb(3 4 4 / 0.08) 30%, rgb(3 4 4 / 0.62) 58%, rgb(3 4 4 / 0.96) 100%),
+      linear-gradient(90deg, rgb(3 4 4 / 0.46), transparent 76%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-stage__media {
+    animation: hero-watch-drift 16s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+
+@keyframes hero-watch-drift {
+  from {
+    transform: scale(1.045) rotate(-0.45deg) translate3d(-0.25%, -0.25%, 0);
+  }
+
+  to {
+    transform: scale(1.085) rotate(0.35deg) translate3d(0.5%, 0.35%, 0);
   }
 }
 

@@ -1,23 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Bodoni_Moda, Inter, JetBrains_Mono } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  JetBrains_Mono,
+  Jost,
+} from "next/font/google";
 
 import { SiteShell } from "@/components/layout/SiteShell";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { getCollections } from "@/server/catalog";
 import "@/styles/globals.css";
 
-const serif = Bodoni_Moda({
+const serif = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: "variable",
   style: ["normal", "italic"],
-  variable: "--font-bodoni",
+  variable: "--font-kairos-display",
   display: "swap",
 });
 
-const sans = Inter({
+const sans = Jost({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-inter",
+  weight: "variable",
+  variable: "--font-kairos-text",
   display: "swap",
 });
 
@@ -74,6 +78,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${serif.variable} ${sans.variable} ${mono.variable}`}
       suppressHydrationWarning
     >

@@ -2,7 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Plus, ShoppingBag } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ShoppingBag,
+} from "lucide-react";
 
 import { ProductCard } from "@/components/commerce/ProductCard";
 import { QuantitySelector } from "@/components/commerce/QuantitySelector";
@@ -29,18 +34,20 @@ export const ProductDetailView = ({
 }: ProductDetailViewProps) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [openSpec, setOpenSpec] = useState<string | null>(null);
   const { addItem } = useCart();
   const { toast } = useToast();
   const accent = accentFor(product.collection);
 
-  const specs = [
+  const watchDetails = [
     { label: "Materials", value: product.materials },
     ...(product.dimensions
       ? [{ label: "Dimensions", value: product.dimensions }]
       : []),
+  ];
+
+  const serviceDetails = [
     {
-      label: "Delivery",
+      label: "Delivery & payment",
       // Derived from the pricing constants so the promise cannot drift from
       // what the bag actually charges.
       value: `Free countrywide over ${formatPrice(FREE_DELIVERY_THRESHOLD)}, otherwise ${formatPrice(STANDARD_DELIVERY)}. Payment on delivery available in Mombasa.`,
@@ -94,7 +101,7 @@ export const ProductDetailView = ({
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start">
             {/* Gallery */}
             <div>
-              <div className="relative aspect-4/5 overflow-hidden rounded-3xl bg-background group">
+              <div className="group relative aspect-square overflow-hidden rounded-3xl bg-background sm:aspect-4/5">
                 <Media
                   src={product.images[imageIndex]}
                   alt={`${product.name} — view ${imageIndex + 1}`}
@@ -108,17 +115,17 @@ export const ProductDetailView = ({
                       type="button"
                       onClick={() => step(-1)}
                       aria-label="Previous image"
-                      className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-surface/90 backdrop-blur text-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="absolute left-4 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-surface/90 text-foreground opacity-100 backdrop-blur transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
                     >
-                      <ChevronLeft className="w-4 h-4" />
+                      <ChevronLeft className="size-4" aria-hidden="true" />
                     </button>
                     <button
                       type="button"
                       onClick={() => step(1)}
                       aria-label="Next image"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-surface/90 backdrop-blur text-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="absolute right-4 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-surface/90 text-foreground opacity-100 backdrop-blur transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
                     >
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="size-4" aria-hidden="true" />
                     </button>
                   </>
                 )}
@@ -152,13 +159,13 @@ export const ProductDetailView = ({
                 <p className={cn("kicker", accent.label)}>{collection.name}</p>
               )}
 
-              <h1 className="mt-3 text-heading-lg font-semibold text-foreground">
+              <h1 className="mt-3 max-w-[13ch] text-heading-lg font-medium text-foreground">
                 {product.name}
               </h1>
 
               {/* Price + action stack: pure text next to the one blue pill. */}
               <div className="mt-6 flex flex-wrap items-center gap-4">
-                <p className="text-numeral font-semibold text-foreground numerals">
+                <p className="text-numeral font-medium text-foreground numerals">
                   {formatPrice(product.price)}
                 </p>
               </div>
@@ -173,41 +180,40 @@ export const ProductDetailView = ({
                   onQuantityChange={setQuantity}
                 />
                 <Button size="lg" onClick={handleAdd}>
-                  <ShoppingBag className="w-4 h-4" />
+                  <ShoppingBag className="size-4" aria-hidden="true" />
                   Add to bag
                 </Button>
               </div>
 
-              {/* Closer look: pill disclosure rows. */}
-              <div className="mt-10 space-y-2">
-                {specs.map((spec) => {
-                  const open = openSpec === spec.label;
-                  return (
-                    <div key={spec.label}>
-                      <button
-                        type="button"
-                        onClick={() => setOpenSpec(open ? null : spec.label)}
-                        aria-expanded={open}
-                        className="w-full flex items-center gap-3 rounded-lg border border-hairline px-4 py-2.5 text-left hover:bg-background transition-colors"
-                      >
-                        <Plus
-                          className={cn(
-                            "w-3.5 h-3.5 text-foreground transition-transform duration-200",
-                            open && "rotate-45",
-                          )}
-                        />
-                        <span className="text-body-sm text-foreground">
-                          {spec.label}
-                        </span>
-                      </button>
-                      {open && (
-                        <p className="px-4 py-3 text-body-sm text-muted-foreground">
-                          {spec.value}
-                        </p>
-                      )}
-                    </div>
-                  );
-                })}
+              {/* The object itself stays scannable; service policies disclose on demand. */}
+              <dl className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-2">
+                {watchDetails.map((detail) => (
+                  <div key={detail.label} className="bg-surface p-4 sm:p-5">
+                    <dt className="text-caption font-medium uppercase tracking-[0.12em] text-subtle-foreground">
+                      {detail.label}
+                    </dt>
+                    <dd className="mt-2 text-body-sm text-foreground">
+                      {detail.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div className="mt-6 divide-y divide-hairline border-y border-hairline">
+                {serviceDetails.map((detail) => (
+                  <details key={detail.label} className="group">
+                    <summary className="flex min-h-13 cursor-pointer list-none items-center justify-between gap-4 py-3 text-left text-body-sm font-medium text-foreground outline-none transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent [&::-webkit-details-marker]:hidden">
+                      {detail.label}
+                      <ChevronDown
+                        className="size-4 shrink-0 transition-transform duration-200 group-open:rotate-180"
+                        aria-hidden="true"
+                      />
+                    </summary>
+                    <p className="max-w-[52ch] pb-4 pr-8 text-body-sm text-muted-foreground">
+                      {detail.value}
+                    </p>
+                  </details>
+                ))}
               </div>
             </div>
           </div>
@@ -219,7 +225,7 @@ export const ProductDetailView = ({
         <section className="band band-base">
           <div className="container-page">
             <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
-              <h2 className="text-heading font-semibold text-foreground">
+              <h2 className="text-heading font-medium text-foreground">
                 More from {collection?.name ?? "Kairos"}.
               </h2>
               <Button asChild variant="neutral" size="sm">
