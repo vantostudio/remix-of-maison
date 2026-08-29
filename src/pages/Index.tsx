@@ -219,7 +219,7 @@ const Index = () => {
           {/* Asymmetric grid — 2-col mosaic on mobile, 12-col editorial on md+ */}
           <div className="grid grid-cols-2 md:grid-cols-12 gap-3 sm:gap-4 md:gap-6">
             {/* Hero tile — full width */}
-            <div className="col-span-2 md:col-span-7">
+            <div className="col-span-2 md:col-span-7 md:order-1">
               <CollectionCard
                 collection={displayedCollections[0]}
                 index={0}
@@ -228,7 +228,7 @@ const Index = () => {
             </div>
 
             {/* Pair of squares */}
-            <div className="col-span-1 md:col-span-5">
+            <div className="col-span-1 md:col-span-5 md:order-2">
               <CollectionCard
                 collection={displayedCollections[1]}
                 index={1}
