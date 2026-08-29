@@ -59,9 +59,9 @@ export const CollectionCard = ({ collection, index = 0, variant = "default", asp
               {collection.description}
             </p>
 
-            {/* Arrow indicator */}
-            <div className="flex items-center gap-2 mt-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-150">
-              <span className="text-xs font-medium tracking-[0.15em] uppercase text-white/90">
+            {/* Arrow indicator — always visible on mobile (no hover) */}
+            <div className="flex items-center gap-1.5 sm:gap-2 mt-2 sm:mt-4 opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-4 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-500 delay-150">
+              <span className="text-[10px] sm:text-xs font-medium tracking-[0.15em] uppercase text-white/90">
                 Explore
               </span>
               <ArrowRight className="w-4 h-4 text-white/90 transform group-hover:translate-x-1 transition-transform duration-300" />
