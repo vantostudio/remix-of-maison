@@ -376,10 +376,10 @@ const Checkout = () => {
                   <p className="text-sm text-muted-foreground">
                     Email us at{" "}
                     <a
-                      href="mailto:hello@maison.com"
+                      href="mailto:hello@rowanandash.com"
                       className="text-foreground underline"
                     >
-                      hello@maison.com
+                      hello@rowanandash.com
                     </a>
                   </p>
                 </div>

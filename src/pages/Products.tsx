@@ -380,7 +380,7 @@ const Products = () => {
               size="lg"
               className="rounded-none px-10 py-6 text-sm tracking-[0.15em] uppercase bg-white text-charcoal hover:bg-white/90"
             >
-              <a href="mailto:hello@maison.com">
+              <a href="mailto:hello@rowanandash.com">
                 Contact Us
                 <ArrowRight className="ml-3 w-4 h-4" />
               </a>

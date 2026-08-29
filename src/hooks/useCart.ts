@@ -81,7 +81,7 @@ export const useCart = create<CartState>()(
       },
     }),
     {
-      name: "maison-cart",
+      name: "rowan-ash-cart",
     }
   )
 );

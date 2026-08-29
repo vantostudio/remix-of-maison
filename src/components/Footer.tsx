@@ -14,7 +14,7 @@ export const Footer = () => {
                 to="/"
                 className="font-serif text-3xl md:text-4xl tracking-tight text-background"
               >
-                Maison
+                Rowan & Ash
               </Link>
               <p className="mt-3 text-sm text-background/50 leading-relaxed max-w-xs">
                 Curated home objects and lifestyle pieces for considered living.
@@ -140,10 +140,10 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:hello@maison.com"
+                  href="mailto:hello@rowanandash.com"
                   className="text-sm text-background/60 hover:text-background transition-colors duration-300"
                 >
-                  hello@maison.com
+                  hello@rowanandash.com
                 </a>
               </li>
               <li>
@@ -160,7 +160,7 @@ export const Footer = () => {
       <div className="border-t border-background/10">
         <div className="container-full py-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-background/30 text-center">
-            © {new Date().getFullYear()} Maison. All rights reserved.
+            © {new Date().getFullYear()} Rowan & Ash. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
             <a

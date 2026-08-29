@@ -7,9 +7,11 @@ interface CollectionCardProps {
   collection: Collection;
   index?: number;
   variant?: "default" | "wide" | "tall";
+  /** Override aspect ratio (e.g. for mobile mosaic layouts) */
+  aspectClass?: string;
 }
 
-export const CollectionCard = ({ collection, index = 0, variant = "default" }: CollectionCardProps) => {
+export const CollectionCard = ({ collection, index = 0, variant = "default", aspectClass }: CollectionCardProps) => {
   return (
     <motion.article
       initial={{ opacity: 0, y: 40 }}
