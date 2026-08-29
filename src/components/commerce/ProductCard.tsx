@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Eye } from "lucide-react";
 import { useState } from "react";
 
 import { Media } from "@/components/media/Media";
@@ -27,39 +28,53 @@ export const ProductCard = ({ product, variant = "default" }: ProductCardProps) 
 
   return (
     <article className="group">
-      <Link href={`/products/${product.slug}`} className="block">
-        {/* The photograph fills the card; nothing is layered over it. */}
-        <div
-          className={cn(
-            "relative overflow-hidden rounded-3xl bg-surface",
-            variant === "large" ? "aspect-3/4" : "aspect-4/5",
-          )}
-        >
-          <Media
-            src={product.images[0]}
-            alt={product.name}
-            sizes={CARD_SIZES}
+      {/* Relative wrapper, so the quick-look control is a sibling of the link
+          rather than a button nested inside an anchor. */}
+      <div className="relative">
+        <Link href={`/products/${product.slug}`} className="block">
+          <div
             className={cn(
-              "transition-opacity duration-500",
-              hasSecondImage && "group-hover:opacity-0",
+              "relative overflow-hidden rounded-3xl bg-surface",
+              variant === "large" ? "aspect-3/4" : "aspect-4/5",
             )}
-          />
-          {hasSecondImage && (
+          >
             <Media
-              src={product.images[1]}
-              alt={`${product.name} — alternate view`}
+              src={product.images[0]}
+              alt={product.name}
               sizes={CARD_SIZES}
-              className="opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              className={cn(
+                "transition-opacity duration-500",
+                hasSecondImage && "group-hover:opacity-0",
+              )}
             />
-          )}
+            {hasSecondImage && (
+              <Media
+                src={product.images[1]}
+                alt={`${product.name} — alternate view`}
+                sizes={CARD_SIZES}
+                className="opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              />
+            )}
 
-          {product.new && (
-            <span className="absolute top-4 left-4 rounded-lg bg-surface px-3 py-1 text-caption font-medium text-foreground">
-              New
-            </span>
-          )}
-        </div>
-      </Link>
+            {product.new && (
+              <span className="absolute top-4 left-4 rounded-lg bg-surface px-3 py-1 text-caption font-medium text-foreground">
+                New
+              </span>
+            )}
+          </div>
+        </Link>
+
+        {/* Quick look lives on the image so it costs the card no vertical space:
+            always available on touch, revealed on hover where there is a cursor. */}
+        <button
+          type="button"
+          onClick={() => setQuickViewOpen(true)}
+          aria-label={`Quick look at ${product.name}`}
+          className="absolute top-3 right-3 grid size-10 place-items-center rounded-full bg-surface/90 text-foreground shadow-sm backdrop-blur-sm transition-opacity duration-300 hover:bg-surface md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
+        >
+          <Eye className="size-4" aria-hidden="true" />
+        </button>
+      </div>
 
       <div className="pt-4">
         {collection && (
@@ -70,19 +85,9 @@ export const ProductCard = ({ product, variant = "default" }: ProductCardProps) 
           <Link href={`/products/${product.slug}`}>{product.name}</Link>
         </h3>
 
-        <div className="mt-2 flex items-baseline gap-3">
-          <p className="text-body text-foreground numerals">
-            {formatPrice(product.price)}
-          </p>
-          {/* Kept discoverable on touch, where there is no hover to reveal it. */}
-          <button
-            type="button"
-            onClick={() => setQuickViewOpen(true)}
-            className="ml-auto text-body-sm text-link transition-opacity md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
-          >
-            Quick look
-          </button>
-        </div>
+        <p className="mt-2 text-body text-foreground numerals">
+          {formatPrice(product.price)}
+        </p>
       </div>
 
       <QuickViewDialog
