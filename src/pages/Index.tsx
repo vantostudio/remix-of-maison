@@ -216,49 +216,55 @@ const Index = () => {
             </h2>
           </motion.div>
 
-          {/* Asymmetric grid layout */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-            {/* First row: 2 items */}
-            <div className="md:col-span-7">
+          {/* Asymmetric grid — 2-col mosaic on mobile, 12-col editorial on md+ */}
+          <div className="grid grid-cols-2 md:grid-cols-12 gap-3 sm:gap-4 md:gap-6">
+            {/* Hero tile — full width */}
+            <div className="col-span-2 md:col-span-7 md:order-1">
               <CollectionCard
                 collection={displayedCollections[0]}
                 index={0}
-                variant="wide"
+                aspectClass="aspect-[16/10] md:aspect-[16/9]"
               />
             </div>
-            <div className="md:col-span-5">
+
+            {/* Pair of squares */}
+            <div className="col-span-1 md:col-span-5 md:order-2">
               <CollectionCard
                 collection={displayedCollections[1]}
                 index={1}
+                aspectClass="aspect-[3/4]"
               />
             </div>
-
-            {/* Second row: 3 items */}
-            <div className="md:col-span-4">
+            <div className="col-span-1 md:col-span-4 md:order-4">
               <CollectionCard
                 collection={displayedCollections[2]}
                 index={2}
-              />
-            </div>
-            <div className="md:col-span-4">
-              <CollectionCard
-                collection={displayedCollections[3]}
-                index={3}
-              />
-            </div>
-            <div className="md:col-span-4">
-              <CollectionCard
-                collection={displayedCollections[4]}
-                index={4}
+                aspectClass="aspect-[3/4]"
               />
             </div>
 
-            {/* Third row: 1 wide item */}
-            <div className="md:col-span-12">
+            {/* Wide banner — full width on mobile */}
+            <div className="col-span-2 md:col-span-4 md:order-3">
+              <CollectionCard
+                collection={displayedCollections[3]}
+                index={3}
+                aspectClass="aspect-[16/9] md:aspect-[3/4]"
+              />
+            </div>
+
+            {/* Pair of squares */}
+            <div className="col-span-1 md:col-span-4 md:order-5">
+              <CollectionCard
+                collection={displayedCollections[4]}
+                index={4}
+                aspectClass="aspect-[3/4]"
+              />
+            </div>
+            <div className="col-span-1 md:col-span-12 md:order-6">
               <CollectionCard
                 collection={displayedCollections[5]}
                 index={5}
-                variant="wide"
+                aspectClass="aspect-[3/4] md:aspect-[16/9]"
               />
             </div>
           </div>
@@ -316,7 +322,7 @@ const Index = () => {
               Follow Us
             </p>
             <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-              @maisonhome
+              @rowanandash
             </h2>
             <p className="text-muted-foreground max-w-md mx-auto">
               Join our community and get inspired by curated spaces and behind-the-scenes moments.

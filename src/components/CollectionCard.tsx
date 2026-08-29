@@ -7,9 +7,11 @@ interface CollectionCardProps {
   collection: Collection;
   index?: number;
   variant?: "default" | "wide" | "tall";
+  /** Override aspect ratio (e.g. for mobile mosaic layouts) */
+  aspectClass?: string;
 }
 
-export const CollectionCard = ({ collection, index = 0, variant = "default" }: CollectionCardProps) => {
+export const CollectionCard = ({ collection, index = 0, variant = "default", aspectClass }: CollectionCardProps) => {
   return (
     <motion.article
       initial={{ opacity: 0, y: 40 }}
@@ -23,9 +25,10 @@ export const CollectionCard = ({ collection, index = 0, variant = "default" }: C
       >
         <div
           className={`relative overflow-hidden bg-muted/50 ${
-            variant === "wide" ? "aspect-[16/9]" :
+            aspectClass ??
+            (variant === "wide" ? "aspect-[16/9]" :
             variant === "tall" ? "aspect-[2/3]" :
-            "aspect-[3/4]"
+            "aspect-[3/4]")
           }`}
         >
           {/* Image with zoom on hover */}
@@ -40,25 +43,25 @@ export const CollectionCard = ({ collection, index = 0, variant = "default" }: C
           <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors duration-700" />
 
           {/* Content */}
-          <div className="absolute inset-0 flex flex-col justify-end p-7 md:p-8">
+          <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-7 md:p-8">
             {/* Collection label */}
-            <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-white/60 mb-2 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            <p className="hidden sm:block text-[10px] font-semibold tracking-[0.25em] uppercase text-white/60 mb-2 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
               Collection
             </p>
 
             {/* Title */}
-            <h3 className="font-serif text-2xl md:text-3xl text-white mb-2 transform group-hover:-translate-y-1 transition-transform duration-500">
+            <h3 className="font-serif text-lg sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2 transform group-hover:-translate-y-1 transition-transform duration-500">
               {collection.name}
             </h3>
 
             {/* Description with reveal */}
-            <p className="text-sm text-white/70 leading-relaxed max-w-xs transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+            <p className="hidden sm:block text-sm text-white/70 leading-relaxed max-w-xs transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500 delay-75 line-clamp-2">
               {collection.description}
             </p>
 
-            {/* Arrow indicator */}
-            <div className="flex items-center gap-2 mt-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-150">
-              <span className="text-xs font-medium tracking-[0.15em] uppercase text-white/90">
+            {/* Arrow indicator — always visible on mobile (no hover) */}
+            <div className="flex items-center gap-1.5 sm:gap-2 mt-2 sm:mt-4 opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-4 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-500 delay-150">
+              <span className="text-[10px] sm:text-xs font-medium tracking-[0.15em] uppercase text-white/90">
                 Explore
               </span>
               <ArrowRight className="w-4 h-4 text-white/90 transform group-hover:translate-x-1 transition-transform duration-300" />

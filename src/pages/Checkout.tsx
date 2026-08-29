@@ -138,7 +138,7 @@ const Checkout = () => {
                   <h2 className="font-serif text-xl mb-6">
                     Contact Information
                   </h2>
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     <div>
                       <label
                         htmlFor="firstName"
@@ -172,7 +172,7 @@ const Checkout = () => {
                       />
                     </div>
                   </div>
-                  <div className="grid sm:grid-cols-2 gap-4 mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-4">
                     <div>
                       <label
                         htmlFor="email"
@@ -229,8 +229,8 @@ const Checkout = () => {
                         className="rounded-none h-12"
                       />
                     </div>
-                    <div className="grid sm:grid-cols-3 gap-4">
-                      <div className="sm:col-span-1">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                      <div>
                         <label
                           htmlFor="city"
                           className="block text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground mb-2"
@@ -262,7 +262,7 @@ const Checkout = () => {
                           className="rounded-none h-12"
                         />
                       </div>
-                      <div>
+                      <div className="col-span-2 sm:col-span-1">
                         <label
                           htmlFor="country"
                           className="block text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground mb-2"
@@ -376,10 +376,10 @@ const Checkout = () => {
                   <p className="text-sm text-muted-foreground">
                     Email us at{" "}
                     <a
-                      href="mailto:hello@maison.com"
+                      href="mailto:hello@rowanandash.com"
                       className="text-foreground underline"
                     >
-                      hello@maison.com
+                      hello@rowanandash.com
                     </a>
                   </p>
                 </div>
