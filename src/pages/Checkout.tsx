@@ -262,7 +262,7 @@ const Checkout = () => {
                           className="rounded-none h-12"
                         />
                       </div>
-                      <div>
+                      <div className="col-span-2 sm:col-span-1">
                         <label
                           htmlFor="country"
                           className="block text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground mb-2"
