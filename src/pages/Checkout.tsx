@@ -138,7 +138,7 @@ const Checkout = () => {
                   <h2 className="font-serif text-xl mb-6">
                     Contact Information
                   </h2>
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     <div>
                       <label
                         htmlFor="firstName"

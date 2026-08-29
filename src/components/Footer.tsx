@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import { collections } from "@/data/products";
 
 export const Footer = () => {
