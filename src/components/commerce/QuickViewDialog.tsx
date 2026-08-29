@@ -51,9 +51,9 @@ export const QuickViewDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="p-0 gap-0 overflow-hidden rounded-3xl border-hairline max-w-[calc(100vw-2rem)] sm:max-w-2xl">
+      <DialogContent className="p-0 gap-0 rounded-3xl border-hairline max-w-[calc(100vw-2rem)] sm:max-w-2xl">
         <div className="grid sm:grid-cols-2">
-          <div className="relative aspect-4/5 sm:aspect-auto sm:h-[26rem] bg-background">
+          <div className="relative aspect-3/2 sm:aspect-auto sm:h-[26rem] bg-background">
             <Media
               src={product.images[0]}
               alt={product.name}
@@ -61,7 +61,7 @@ export const QuickViewDialog = ({
             />
           </div>
 
-          <div className="p-6 md:p-7 flex flex-col">
+          <div className="p-5 sm:p-6 md:p-7 flex flex-col">
             {collection && (
               <p className={cn("kicker", accent.label)}>{collection.name}</p>
             )}
@@ -78,7 +78,7 @@ export const QuickViewDialog = ({
               {formatPrice(product.price)}
             </p>
 
-            <div className="mt-auto pt-6 space-y-3">
+            <div className="mt-auto pt-5 sm:pt-6 space-y-3">
               <QuantitySelector
                 quantity={quantity}
                 onQuantityChange={setQuantity}
