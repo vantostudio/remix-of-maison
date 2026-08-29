@@ -1,8 +1,6 @@
-"use client";
-
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { Product } from "@/types/catalog";
+import { Product } from "@/data/products";
 
 export interface CartItem {
   product: Product;
@@ -83,7 +81,7 @@ export const useCart = create<CartState>()(
       },
     }),
     {
-      name: "kairos-cart",
+      name: "maison-cart",
     }
   )
 );
